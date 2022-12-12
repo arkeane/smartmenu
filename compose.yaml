@@ -23,7 +23,7 @@ services:
     build: ./docker/php/
     container_name: backend
     volumes:
-      - ./www/html/:/var/www/html/
+      - ./www/:/var/www/
     networks:
       - net
 
@@ -35,7 +35,7 @@ services:
     links:
       - backend
     volumes:
-      - ./www/html/:/var/www/html/
+      - ./www/:/var/www/
     networks:
       - net
 
