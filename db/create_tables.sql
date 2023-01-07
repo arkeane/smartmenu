@@ -1,10 +1,10 @@
-DROP TABLE IF EXISTS restaurants;
-CREATE TABLE restaurants (
+DROP TABLE IF EXISTS users;
+CREATE TABLE users (
     id integer NOT NULL AUTO_INCREMENT,
-    username varchar(255) NOT NULL,
+    firstname varchar(255) NOT NULL,
+    lastname varchar(255) NOT NULL,
+    email varchar(255) NOT NULL,
     password_hash varchar(255) NOT NULL,
-    name varchar(255) NOT NULL,
-    userpic blob,
     PRIMARY KEY (id)
 );
 
@@ -20,7 +20,7 @@ CREATE TABLE products (
     gluten_free boolean NOT NULL,
     lactose_free boolean NOT NULL,
     PRIMARY KEY (id),
-    CONSTRAINT products_restaurant_id_fkey FOREIGN KEY (restaurant_id) REFERENCES restaurants (id) ON DELETE CASCADE
+    CONSTRAINT products_restaurant_id_fkey FOREIGN KEY (restaurant_id) REFERENCES users (id) ON DELETE CASCADE
 );
 DROP TABLE IF EXISTS ingredients;
 CREATE TABLE ingredients (
@@ -29,7 +29,7 @@ CREATE TABLE ingredients (
     name varchar(255) NOT NULL,
     source varchar(255),
     PRIMARY KEY (id),
-    CONSTRAINT ingredients_restaurant_id_fkey FOREIGN KEY (restaurant_id) REFERENCES restaurants (id) ON DELETE CASCADE
+    CONSTRAINT ingredients_restaurant_id_fkey FOREIGN KEY (restaurant_id) REFERENCES users (id) ON DELETE CASCADE
 );
 DROP TABLE IF EXISTS recipes;
 CREATE TABLE recipes (
