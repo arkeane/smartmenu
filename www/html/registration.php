@@ -40,5 +40,7 @@ if (isset($_POST["submit"])) {
         echo "Error inserting data: " . mysqli_error($conn);
         exit;
     }
+
+    header("Location: login.html");
 }
 ?>

@@ -37,5 +37,7 @@ if (isset($_POST["submit"])) {
 
     $_SESSION["email"] = $email;
     $_SESSION["loggedin"] = true;
+
+    header("Location: show_profile.php");
 }
 ?>
