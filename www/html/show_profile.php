@@ -25,19 +25,18 @@
 
     <div class="container">
         <div class="row">
-            <div class="col-8" style="width: auto;">
+            <div class="col-4" style="width: auto;">
                 <div class="card mb-3" style="width: auto;">
                     <div class="card-body">
                         <?php
                         include 'db.php';
-                        $email = $_SESSION["email"];
 
                         $conn = new mysqli($servername, $username, $db_password, $dbname);
                         if ($conn->connect_error) {
                             die("Connection failed: " . $conn->connect_error);
                         }
 
-                        $sql = "SELECT * FROM users WHERE email='$email'";
+                        $sql = "SELECT * FROM users WHERE email='$_SESSION[email]'";
                         $result = mysqli_query($conn, $sql);
                         $row = mysqli_fetch_assoc($result);
 
@@ -65,11 +64,32 @@
                         Menus
                     </div>
                     <ul class="list-group list-group-flush">
-                        <a href="https://google.it/" class="list-group-item list-group-item-action">Google</a>
-                        <li class="list-group-item">An item</li>
-                        <li class="list-group-item">A second item</li>
-                        <li class="list-group-item">A third item</li>
+                        <?php
+
+                        $sql = "SELECT * FROM menus WHERE id='$_SESSION[bd_id]'";
+                        $result = mysqli_query($conn, $sql);
+                        while ($row = mysqli_fetch_assoc($result)) {
+                            echo "<a href='show_menu.php?menu_id=" . $row["id"] . "' class='list-group-item list-group-item-action'>" . $row["name"] . "</a>";
+                        }
+                        ?>
                     </ul>
+                </div>
+            </div>
+            <div class="col-4" style="width: auto;">
+                <div class="card" style="width: auto;">
+                    <div class="card-header">
+                        Templates
+                    </div>
+                    <ul class="list-group list-group-flush">
+                    <?php
+                        $sql = "SELECT template_id, name FROM templates, bought_templates WHERE templates.id = bought_templates.template_id AND bought_templates.restaurant_id='$_SESSION[bd_id]'";
+                        $result = mysqli_query($conn, $sql);
+                        while ($row = mysqli_fetch_assoc($result)) {
+                            echo "<a href='add_menu.php?template_id=" . $row["template_id"] . "' class='list-group-item list-group-item-action'>" . $row["name"] . "</a>";
+                        }
+                        ?>
+                    </ul>
+                    <a href="market.php" class="btn btn-primary">Buy Templates</a>
                 </div>
             </div>
         </div>

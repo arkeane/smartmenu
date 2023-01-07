@@ -38,5 +38,16 @@ if (isset($_POST["submit"])) {
         exit;
     }
 
+    $sql = "SELECT id FROM users WHERE email='$email'";
+    $result = mysqli_query($conn, $sql);
+    $row = mysqli_fetch_assoc($result);
+    $id = $row["id"];
+
+    $sql = "INSERT INTO bought_templates (template_id, restaurant_id) VALUES (1, '$id');";
+    if (!mysqli_query($conn, $sql)) {
+        echo "Error binding default template to user: " . mysqli_error($conn);
+        exit;
+    }
+
     header("Location: login.html");
 }

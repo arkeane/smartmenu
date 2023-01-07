@@ -32,8 +32,13 @@ if (isset($_POST["submit"])) {
         exit;
     }
 
+    $sql = "SELECT id FROM users WHERE email='$email'";
+    $result = mysqli_query($conn, $sql);
+    $row = mysqli_fetch_assoc($result);
+    $id = $row["id"];
+
     $_SESSION["email"] = $email;
-    $_SESSION["loggedin"] = true;
+    $_SESSION["bd_id"] = $id;
 
     header("Location: show_profile.php");
 }

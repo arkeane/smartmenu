@@ -28,32 +28,23 @@
         $lastname = $_POST["lastname"];
         $email = $_POST["email"];
 
-        $sessionemail = $_SESSION["email"];
+        $conn = new mysqli($servername, $username, $db_password, $dbname);
+        if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
+        }
 
         if ($firstname != $_SESSION["firstname"]) {
-            $conn = new mysqli($servername, $username, $db_password, $dbname);
-            if ($conn->connect_error) {
-                die("Connection failed: " . $conn->connect_error);
-            }
-            $sql = "UPDATE users SET firstname='$firstname' WHERE email='$sessionemail'";
+            $sql = "UPDATE users SET firstname='$firstname' WHERE email='$_SESSION[email]'";
             mysqli_query($conn, $sql);
         }
 
         if ($lastname != $_SESSION["lastname"]) {
-            $conn = new mysqli($servername, $username, $db_password, $dbname);
-            if ($conn->connect_error) {
-                die("Connection failed: " . $conn->connect_error);
-            }
-            $sql = "UPDATE users SET lastname='$lastname' WHERE email='$sessionemail'";
+            $sql = "UPDATE users SET lastname='$lastname' WHERE email='$_SESSION[email]'";
             mysqli_query($conn, $sql);
         }
 
         if ($email != $_SESSION["email"]) {
-            $conn = new mysqli($servername, $username, $db_password, $dbname);
-            if ($conn->connect_error) {
-                die("Connection failed: " . $conn->connect_error);
-            }
-            $sql = "UPDATE users SET email='$email' WHERE email='$sessionemail'";
+            $sql = "UPDATE users SET email='$email' WHERE email='$_SESSION[email]'";
             mysqli_query($conn, $sql);
         }
 
