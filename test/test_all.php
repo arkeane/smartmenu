@@ -11,7 +11,7 @@ require 'utils.php';
 /****************************************/
 
 // local URL
-$baseurl =  'http://localhost/....';
+$baseurl =  'http://localhost:6080/';
 
 // remote URL
 // $baseurl =  'https://saw21.dibris.unige.it/~S1234567/...';

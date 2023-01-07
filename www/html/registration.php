@@ -1,9 +1,6 @@
 <?php
 if (isset($_POST["submit"])) {
-    $servername = "database";
-    $username = "root";
-    $db_password = "root";
-    $dbname = "demo";
+    include 'db.php';
 
     $firstname = $_POST["firstname"];
     $lastname = $_POST["lastname"];
@@ -43,4 +40,3 @@ if (isset($_POST["submit"])) {
 
     header("Location: login.html");
 }
-?>

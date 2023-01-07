@@ -7,7 +7,6 @@ CREATE TABLE users (
     password_hash varchar(255) NOT NULL,
     PRIMARY KEY (id)
 );
-
 DROP TABLE IF EXISTS products;
 CREATE TABLE products (
     id integer NOT NULL AUTO_INCREMENT,

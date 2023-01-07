@@ -2,10 +2,7 @@
 session_start();
 
 if (isset($_POST["submit"])) {
-    $servername = "database";
-    $username = "root";
-    $password = "root";
-    $dbname = "demo";
+    include 'db.php';
 
     $email = $_POST["email"];
     $pass = $_POST["pass"];
@@ -15,7 +12,7 @@ if (isset($_POST["submit"])) {
         exit;
     }
 
-    $conn = new mysqli($servername, $username, $password, $dbname);
+    $conn = new mysqli($servername, $username, $db_password, $dbname);
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
     }
@@ -40,4 +37,3 @@ if (isset($_POST["submit"])) {
 
     header("Location: show_profile.php");
 }
-?>
