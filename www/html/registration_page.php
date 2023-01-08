@@ -32,7 +32,7 @@
                             <div class="mb-md-1 mt-md-1 pb-1">
                                 <img src="./img/pizza.svg" alt="logo" width="100" class="mb-4">
                                 <h2 class="fw-bold mb-2 text-uppercase">Register</h2>
-                                <p class="text-white-50 mb-5">Please Insert all the needed informations</p>
+                                <p class="text-white-50 mb-3">Please Insert all the needed informations</p>
                                 <form action="registration.php" method="post">
                                     <div class="form-outline form-white mb-4">
                                         <input type="text" name="firstname" id="typeFirstNameX" class="form-control form-control-lg" required placeholder="First Name" />
@@ -47,11 +47,11 @@
                                     </div>
 
                                     <div class="form-outline form-white mb-4">
-                                        <input type="password" name="pass" id="typePasswordX" class="form-control form-control-lg" required placeholder="Password" />
+                                        <input type="password" name="pass" id="typePasswordPass" class="form-control form-control-lg" required placeholder="Password" />
                                     </div>
 
                                     <div class="form-outline form-white mb-4">
-                                        <input type="password" name="confirm" id="typePasswordX" class="form-control form-control-lg" required placeholder="Confirm Password" />
+                                        <input type="password" name="confirm" id="typePasswordConfirm" class="form-control form-control-lg" required placeholder="Confirm Password" />
                                     </div>
 
                                     <button class="btn btn-outline-light btn-lg px-5" type="submit" name="submit" value="submit">Register</button>
