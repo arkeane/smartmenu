@@ -19,9 +19,11 @@ if (isset($_POST["submit"])) {
 
 
     // check if password respect the requirements at least 8 characters, 1 uppercase, 1 lowercase, 1 number
-    if (!preg_match("/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/", $pass)) {
-        header("Location: registration_page.php?error=invalidpassword");
+    if (!preg_match('/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/', $pass)) {
+        if(!preg_match("/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/", $pass)){
+            header("Location: registration_page.php?error=invalidpassword");
         exit;
+        }
     }
     
     if ($pass != $confirm) {
