@@ -32,6 +32,16 @@
                             <div class="mb-md-1 mt-md-1 pb-1">
                                 <img src="./img/pizza.svg" alt="logo" width="100" class="mb-4">
                                 <h2 class="fw-bold mb-2 text-uppercase">Register</h2>
+                                <?php
+                                    if (isset($_GET['error'])) {
+                                        if ($_GET['error'] == "invalidpassword") {
+                                            echo '<p class="text-danger">Password is not secure enough!</p>
+                                            <p class="text-danger">Password must contain at least 8 characters, 1 uppercase letter, 1 lowercase letter, 1 number and 1 special character.</p>';
+                                        } else if ($_GET['error'] == "passwordcheck") {
+                                            echo '<p class="text-danger">Your passwords do not match!</p>';
+                                        }
+                                    }
+                                ?>
                                 <p class="text-white-50 mb-3">Please Insert all the needed informations</p>
                                 <form action="registration.php" method="post">
                                     <div class="form-outline form-white mb-4">
@@ -53,6 +63,8 @@
                                     <div class="form-outline form-white mb-4">
                                         <input type="password" name="confirm" id="typePasswordConfirm" class="form-control form-control-lg" required placeholder="Confirm Password" />
                                     </div>
+
+                                    <input type="checkbox" onclick="showPass()">Show Password</input><br><br>
 
                                     <button class="btn btn-outline-light btn-lg px-5" type="submit" name="submit" value="submit">Register</button>
                                     <a class="btn btn-outline-light btn-lg px-5" href="index.php">Cancel</a>

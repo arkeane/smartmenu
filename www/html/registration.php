@@ -17,8 +17,15 @@ if (isset($_POST["submit"])) {
     $lastname = mysqli_real_escape_string($conn, $lastname);
     $email = mysqli_real_escape_string($conn, $email);
 
+
+    // check if password respect the requirements at least 8 characters, 1 uppercase, 1 lowercase, 1 number, 1 special character
+    if (!preg_match('/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/', $pass)) {
+        header("Location: registration_page.php?error=invalidpassword");
+        exit;
+    }
+    
     if ($pass != $confirm) {
-        echo "Passwords do not match";
+        header("Location: registration_page.php?error=passwordcheck");
         exit;
     }
 

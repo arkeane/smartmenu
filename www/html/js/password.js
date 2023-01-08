@@ -22,3 +22,13 @@ myconfirmInput.onkeyup = function () {
         document.getElementById("typePasswordConfirm").style.border = "2px solid red";
     }
 }
+
+function showPass() {
+    if (myInput.type === "password" && myconfirmInput.type === "password") {
+        myInput.type = "text";
+        myconfirmInput.type = "text";
+    } else {
+        myInput.type = "password";
+        myconfirmInput.type = "password";
+    }
+}
