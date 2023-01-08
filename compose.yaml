@@ -5,7 +5,7 @@ services:
     ports:
       - 127.0.0.1:3306:3306
     volumes:
-      - smartmenu_data:/var/lib/mysql
+      - data:/var/lib/mysql
     secrets:
       - db_root_password
       - db_user_password
@@ -44,7 +44,7 @@ networks:
     driver: bridge
 
 volumes:
-  smartmenu_data:
+  data:
 
 secrets:
   db_root_password:
