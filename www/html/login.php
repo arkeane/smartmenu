@@ -2,7 +2,7 @@
 session_start();
 
 if (isset($_POST["submit"])) {
-    include 'db.php';
+    include 'db_config.php';
 
     $email = $_POST["email"];
     $pass = $_POST["pass"];
@@ -40,5 +40,5 @@ if (isset($_POST["submit"])) {
     $_SESSION["email"] = $email;
     $_SESSION["bd_id"] = $id;
 
-    header("Location: show_profile.php");
+    header("Location: index.php");
 }

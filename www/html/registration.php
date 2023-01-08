@@ -1,6 +1,6 @@
 <?php
 if (isset($_POST["submit"])) {
-    include 'db.php';
+    include 'db_config.php';
 
     $firstname = $_POST["firstname"];
     $lastname = $_POST["lastname"];
@@ -51,3 +51,4 @@ if (isset($_POST["submit"])) {
 
     header("Location: login.html");
 }
+?>
