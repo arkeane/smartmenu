@@ -38,7 +38,7 @@ if (isset($_POST["submit"])) {
         $_SESSION["email"] = $email;
         $_SESSION["db_id"] = $id;
 
-        header("Location: index.php");
+        header("Location: show_profile.php");
         exit;
     } else {
         header("Location: login_page.php?error=wrongpassword");

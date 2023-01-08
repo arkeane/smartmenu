@@ -31,6 +31,12 @@
         $lastname = $_POST["lastname"];
         $email = $_POST["email"];
 
+        // filter email
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            echo "Invalid email";
+            exit;
+        }
+
         $firstname = mysqli_real_escape_string($conn, $firstname);
         $lastname = mysqli_real_escape_string($conn, $lastname);
         $email = mysqli_real_escape_string($conn, $email);
@@ -50,6 +56,9 @@
             mysqli_query($conn, $sql);
         }
 
+        unset($_SESSION["firstname"]);
+        unset($_SESSION["lastname"]);
+        $_SESSION["email"] = $email;
         header("Location: show_profile.php");
     }
     ?>

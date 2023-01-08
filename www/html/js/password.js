@@ -6,7 +6,7 @@ myInput.onfocus = function () {
 }
 
 myInput.onkeyup = function () {
-    if (myInput.value.match(/[a-z]/g) && myInput.value.match(/[A-Z]/g) && myInput.value.match(/[0-9]/g) && myInput.value.match(/[^a-zA-Z\d]/g) && myInput.value.length >= 8) {
+    if (myInput.value.match(/[a-z]/g) && myInput.value.match(/[A-Z]/g) && myInput.value.match(/[0-9]/g) && myInput.value.length >= 8) {
         document.getElementById("typePasswordPass").style.border = "2px solid #00FF00";
     }
     else {

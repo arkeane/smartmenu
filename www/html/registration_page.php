@@ -36,7 +36,7 @@
                                     if (isset($_GET['error'])) {
                                         if ($_GET['error'] == "invalidpassword") {
                                             echo '<p class="text-danger">Password is not secure enough!</p>
-                                            <p class="text-danger">Password must contain at least 8 characters, 1 uppercase letter, 1 lowercase letter, 1 number and 1 special character.</p>';
+                                            <p class="text-danger">Password must contain at least 8 characters, 1 uppercase letter, 1 lowercase letter, 1 number.</p>';
                                         } else if ($_GET['error'] == "passwordcheck") {
                                             echo '<p class="text-danger">Your passwords do not match!</p>';
                                         }
