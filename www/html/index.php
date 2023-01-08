@@ -61,4 +61,12 @@
         </nav>
     </header>
 
+
+    <footer class="fixed-bottom bg-dark">
+        <!-- Copyright -->
+        <div class="container-fluid text-center mt-3">
+            <p class="text-light">© 2023 Copyright: SmartMenu</p>
+        </div>
+        <!-- Copyright -->
+    </footer>
 </body>
