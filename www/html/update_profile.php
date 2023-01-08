@@ -31,10 +31,9 @@
         $lastname = $_POST["lastname"];
         $email = $_POST["email"];
 
-        $conn = new mysqli($servername, $username, $db_password, $dbname);
-        if ($conn->connect_error) {
-            die("Connection failed: " . $conn->connect_error);
-        }
+        $firstname = mysqli_real_escape_string($conn, $firstname);
+        $lastname = mysqli_real_escape_string($conn, $lastname);
+        $email = mysqli_real_escape_string($conn, $email);
 
         if ($firstname != $_SESSION["firstname"]) {
             $sql = "UPDATE users SET firstname='$firstname' WHERE email='$_SESSION[email]'";

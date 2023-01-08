@@ -43,10 +43,10 @@
                     } else {
                         echo '<ul class="navbar-nav me-auto mb-2 mb-lg-0">
                             <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="login.html">Login</a>
+                                <a class="nav-link active" aria-current="page" href="login_page.php">Login</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="registration.html">Registration</a>
+                                <a class="nav-link active" aria-current="page" href="registration_page.php">Registration</a>
                             </li>
                         </ul>';
                     }

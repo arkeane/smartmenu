@@ -21,34 +21,35 @@
 session_start();
 
 if (!isset($_SESSION["email"])) {
-    header("Location: error.html");
+    header("Location: login_page.php");
 }
 ?>
 
-<header class="header">
-    <nav class="navbar navbar-dark bg-dark navbar-expand-lg bg-body-tertiary">
-        <div class="container-fluid">
-            <img class="mx-3" src="./img/pizza.svg" alt="logo" width="30" height="30">
-            <a class="navbar-brand" href="index.php">SmartMenu</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="Logout.php">Logout</a>
-                    </li>
-                </ul>
-                <form class="d-flex" role="search">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-light" type="submit">Search</button>
-                </form>
-            </div>
-        </div>
-    </nav>
-</header>
+
 
 <body>
+    <header class="header">
+        <nav class="navbar navbar-dark bg-dark navbar-expand-lg bg-body-tertiary">
+            <div class="container-fluid">
+                <img class="mx-3" src="./img/pizza.svg" alt="logo" width="30" height="30">
+                <a class="navbar-brand" href="index.php">SmartMenu</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="Logout.php">Logout</a>
+                        </li>
+                    </ul>
+                    <form class="d-flex" role="search">
+                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-outline-light" type="submit">Search</button>
+                    </form>
+                </div>
+            </div>
+        </nav>
+    </header>
 
     <div class="container-fluid mt-4">
         <div class="row">
@@ -61,11 +62,6 @@ if (!isset($_SESSION["email"])) {
 
                         <?php
                         include 'db_config.php';
-
-                        $conn = new mysqli($servername, $username, $db_password, $dbname);
-                        if ($conn->connect_error) {
-                            die("Connection failed: " . $conn->connect_error);
-                        }
 
                         $sql = "SELECT * FROM users WHERE email='$_SESSION[email]'";
                         $result = mysqli_query($conn, $sql);
@@ -95,10 +91,10 @@ if (!isset($_SESSION["email"])) {
                     <ul class="list-group list-group-flush">
                         <?php
 
-                        $sql = "SELECT * FROM menus WHERE id='$_SESSION[bd_id]'";
+                        $sql = "SELECT * FROM menus WHERE restaurant_id='$_SESSION[db_id]'";
                         $result = mysqli_query($conn, $sql);
                         while ($row = mysqli_fetch_assoc($result)) {
-                            echo "<a href='show_menu.php?menu_id=" . $row["id"] . "' class='list-group-item list-group-item btn'>" . $row["name"] . "</a>";
+                            echo "<a href='/menu/edit_menu.php?menu_id=" . $row["id"] . "' class='list-group-item-dark list-group-item btn'>" . $row["name"] . "</a>";
                         }
                         ?>
                     </ul>
@@ -111,7 +107,7 @@ if (!isset($_SESSION["email"])) {
                     </div>
                     <ul class="list-group list-group-flush">
                         <?php
-                        $sql = "SELECT template_id, name FROM templates, bought_templates WHERE templates.id = bought_templates.template_id AND bought_templates.restaurant_id='$_SESSION[bd_id]'";
+                        $sql = "SELECT template_id, name FROM templates, bought_templates WHERE templates.id = bought_templates.template_id AND bought_templates.restaurant_id='$_SESSION[db_id]'";
                         $result = mysqli_query($conn, $sql);
                         while ($row = mysqli_fetch_assoc($result)) {
                             echo "<a href='/menu/add_menu.php?template_id=" . $row["template_id"] . "' class=' list-group-item-dark list-group-item btn'>" . $row["name"] . "</a>";

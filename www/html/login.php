@@ -12,33 +12,36 @@ if (isset($_POST["submit"])) {
         exit;
     }
 
-    $conn = new mysqli($servername, $username, $db_password, $dbname);
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        echo "Invalid email";
+        exit;
     }
+
+    $email = mysqli_real_escape_string($conn, $email);
 
     $sql = "SELECT * FROM users WHERE email='$email'";
     $result = mysqli_query($conn, $sql);
     if (mysqli_num_rows($result) == 0) {
-        echo "Email does not exist";
+        header("Location: login_page.php?user=notfound");
         exit;
     }
 
     $row = mysqli_fetch_assoc($result);
     $hash_pass = $row["password_hash"];
 
-    if (!password_verify($pass, $hash_pass)) {
-        echo "Incorrect password";
+    if (password_verify($pass, $hash_pass)) {
+        $sql = "SELECT id FROM users WHERE email='$email'";
+        $result = mysqli_query($conn, $sql);
+        $row = mysqli_fetch_assoc($result);
+        $id = $row["id"];
+
+        $_SESSION["email"] = $email;
+        $_SESSION["db_id"] = $id;
+
+        header("Location: index.php");
+        exit;
+    } else {
+        header("Location: login_page.php?error=wrongpassword");
         exit;
     }
-
-    $sql = "SELECT id FROM users WHERE email='$email'";
-    $result = mysqli_query($conn, $sql);
-    $row = mysqli_fetch_assoc($result);
-    $id = $row["id"];
-
-    $_SESSION["email"] = $email;
-    $_SESSION["bd_id"] = $id;
-
-    header("Location: index.php");
 }

@@ -13,6 +13,10 @@ if (isset($_POST["submit"])) {
         exit;
     }
 
+    $firstname = mysqli_real_escape_string($conn, $firstname);
+    $lastname = mysqli_real_escape_string($conn, $lastname);
+    $email = mysqli_real_escape_string($conn, $email);
+
     if ($pass != $confirm) {
         echo "Passwords do not match";
         exit;
@@ -20,15 +24,11 @@ if (isset($_POST["submit"])) {
 
     $hash_pass = password_hash($pass, PASSWORD_DEFAULT);
 
-    $conn = new mysqli($servername, $username, $db_password, $dbname);
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
-
     $sql = "SELECT * FROM users WHERE email='$email'";
     $result = mysqli_query($conn, $sql);
     if (mysqli_num_rows($result) > 0) {
         echo "Email already exists";
+        header("Location: login_page.php");
         exit;
     }
 
@@ -49,6 +49,6 @@ if (isset($_POST["submit"])) {
         exit;
     }
 
-    header("Location: login.html");
+    header("Location: login_page.php");
 }
 ?>
