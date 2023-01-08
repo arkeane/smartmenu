@@ -23,7 +23,7 @@
     include 'db_config.php';
 
     if (!isset($_SESSION["email"])) {
-        header("Location: error.html");
+        header("Location: login_page.php");
     }
 
     if (isset($_POST['submit'])) {
