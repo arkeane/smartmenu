@@ -53,7 +53,7 @@ if ($row == NULL) {
 ?>
 
 <body>
-    <section>
+    <section class="vh-100 gradient-custom">
         <div class="container-flex mt-4 mx-4">
             <div class="container py-5 h-100">
                 <div class="row d-flex justify-content-center align-items-center h-100">
@@ -70,12 +70,12 @@ if ($row == NULL) {
                                     }
                                     ?>
                                     <h2 class="fw-bold mb-2 text-uppercase">
-                                    Create Menu Using
-                                    <p class="text-success">
-                                        <?php
-                                        echo ' ' . $template_name . '';
-                                        ?>
-                                    </p>
+                                        Create Menu Using
+                                        <p class="text-success">
+                                            <?php
+                                            echo ' ' . $template_name . '';
+                                            ?>
+                                        </p>
                                     </h2>
                                     <form action="create_menu.php" method="post">
                                         <div class="form-outline form-white mb-4">

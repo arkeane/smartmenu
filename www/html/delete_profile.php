@@ -57,10 +57,6 @@
                                     <a class="btn btn-outline-light btn-lg px-5" href="show_profile.php">Cancel</a>
                                 </form>
                             </div>
-                            <div>
-                                <p class="mb-0">Already Have an Account? <a href="login_page.php" class="text-white-50 fw-bold">Login</a>
-                                </p>
-                            </div>
                         </div>
                     </div>
                 </div>

@@ -120,7 +120,7 @@ if (!isset($_SESSION["email"])) {
                         $sql = "SELECT * FROM menus WHERE restaurant_id='$_SESSION[db_id]'";
                         $result = mysqli_query($conn, $sql);
                         while ($row = mysqli_fetch_assoc($result)) {
-                            echo "<a href='/menu/edit_menu.php?menu_id=" . $row["id"] . "' class='list-group-item-dark list-group-item btn'>" . $row["name"] . "</a>";
+                            echo "<a href='/menu/edit_menu.php?menu_id=" . $row["id"] . "' class='list-group-item list-group-item-dark btn'>" . $row["name"] . "</a>";
                         }
                         ?>
                     </ul>
@@ -136,7 +136,7 @@ if (!isset($_SESSION["email"])) {
                         $sql = "SELECT template_id, name FROM templates, bought_templates WHERE templates.id = bought_templates.template_id AND bought_templates.restaurant_id='$_SESSION[db_id]'";
                         $result = mysqli_query($conn, $sql);
                         while ($row = mysqli_fetch_assoc($result)) {
-                            echo "<a href='/menu/add_menu.php?template_id=" . $row["template_id"] . "' class=' list-group-item-dark list-group-item btn'>" . $row["name"] . "</a>";
+                            echo "<a href='/menu/add_menu.php?template_id=" . $row["template_id"] . "' class=' list-group-item list-group-item-dark btn'>" . $row["name"] . "</a>";
                         }
                         ?>
                     </ul>

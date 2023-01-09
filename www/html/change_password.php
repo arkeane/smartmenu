@@ -78,7 +78,7 @@
                         <div class="card-body p-4 text-center">
                             <div class="mb-md-1 mt-md-1 pb-1">
                                 <img src="./img/pizza.svg" alt="logo" width="100" class="mb-1">
-                                <h2 class="fw-bold mb-1 text-uppercase">Register</h2>
+                                <h2 class="fw-bold mb-1 text-uppercase">Change Password</h2>
                                 <?php
                                 if (isset($_GET['error'])) {
                                     if ($_GET['error'] == "invalidpassword") {
@@ -91,7 +91,7 @@
                                     }
                                 }
                                 ?>
-                                <p class="text-white-50 mb-3">Please Insert all the needed informations</p>
+                                <p class="text-white-50 mb-3">Insert Old Password and New Password</p>
                                 <form action="" method="post">
                                     <div class="form-outline form-white mb-4">
                                         <input type="password" name="oldpass" id="typeOldPasswordPass" class="form-control form-control-lg" required placeholder="Old Password" />
@@ -110,10 +110,6 @@
                                     <button class="btn btn-outline-light btn-lg px-5" type="submit" name="submit" value="submit">Change Password</button>
                                     <a class="btn btn-outline-light btn-lg px-5" href="show_profile.php">Cancel</a>
                                 </form>
-                            </div>
-                            <div>
-                                <p class="mb-0">Already Have an Account? <a href="login_page.php" class="text-white-50 fw-bold">Login</a>
-                                </p>
                             </div>
                         </div>
                     </div>
