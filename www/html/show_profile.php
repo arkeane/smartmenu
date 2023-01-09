@@ -30,7 +30,7 @@ if (!isset($_SESSION["email"])) {
         <nav class="navbar navbar-dark bg-dark navbar-expand-lg bg-body-tertiary">
             <div class="container-fluid">
                 <img class="mx-3" src="./img/pizza.svg" alt="logo" width="30" height="30">
-                <a class="navbar-brand" href="index.php">SmartMenu</a>
+                <a class="navbar-brand" href="index.php">HOME</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -38,6 +38,17 @@ if (!isset($_SESSION["email"])) {
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="Logout.php">Logout</a>
+                        </li>
+                    </ul>
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="market/market.php">Template Market</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="about.php">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="contact.php">Contact</a>
                         </li>
                     </ul>
                     <form class="d-flex" role="search">
@@ -51,7 +62,7 @@ if (!isset($_SESSION["email"])) {
 
     <div class="container-fluid">
         <div class="row">
-            <div class="col-4 p-3">
+            <div class="col p-3">
                 <div class="card bg-dark text-light ">
                     <div class="card-header">
                         <span class=fs-2>Profile</span>
@@ -98,7 +109,7 @@ if (!isset($_SESSION["email"])) {
                     </div>
                 </div>
             </div>
-            <div class="col-5 p-3">
+            <div class="col p-3">
                 <div class="card bg-dark text-light">
                     <div class="card-header">
                         <span class=fs-2>Menus</span>

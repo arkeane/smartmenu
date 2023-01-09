@@ -27,30 +27,40 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <?php
+                        session_start();
 
-                    <?php
-                    session_start();
-
-                    if (isset($_SESSION["email"])) {
-                        echo '<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        if (isset($_SESSION["email"])) {
+                            echo '
                             <li class="nav-item">
                                 <a class="nav-link active" aria-current="page" href="show_profile.php">Profile</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link active" aria-current="page" href="Logout.php">Logout</a>
-                            </li>
-                        </ul>';
-                    } else {
-                        echo '<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                            </li>';
+                        } else {
+                            echo '
                             <li class="nav-item">
                                 <a class="nav-link active" aria-current="page" href="login_page.php">Login</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link active" aria-current="page" href="registration_page.php">Registration</a>
-                            </li>
-                        </ul>';
-                    }
-                    ?>
+                            </li>';
+                        }
+                        ?>
+                    </ul>
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="market/market.php">Template Market</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="about.php">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="contact.php">Contact</a>
+                        </li>
+                    </ul>
 
                     <form class="d-flex" role="search">
                         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
