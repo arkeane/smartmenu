@@ -2,17 +2,19 @@
 if (isset($_POST["submit"])) {
     include 'db_config.php';
 
+    $restaurantname = $_POST["restaurantname"];
     $firstname = $_POST["firstname"];
     $lastname = $_POST["lastname"];
     $email = $_POST["email"];
     $pass = $_POST["pass"];
     $confirm = $_POST["confirm"];
 
-    if (empty($firstname) || empty($lastname) || empty($email) || empty($pass) || empty($confirm)) {
+    if (empty($firstname) || empty($lastname) || empty($email) || empty($pass) || empty($confirm) || empty($restaurantname)) {
         echo "Please fill all the fields";
         exit;
     }
 
+    $restaurantname = mysqli_real_escape_string($conn, $restaurantname);
     $firstname = mysqli_real_escape_string($conn, $firstname);
     $lastname = mysqli_real_escape_string($conn, $lastname);
     $email = mysqli_real_escape_string($conn, $email);
@@ -36,12 +38,11 @@ if (isset($_POST["submit"])) {
     $sql = "SELECT * FROM users WHERE email='$email'";
     $result = mysqli_query($conn, $sql);
     if (mysqli_num_rows($result) > 0) {
-        echo "Email already exists";
         header("Location: login_page.php");
         exit;
     }
 
-    $sql = "INSERT INTO users(firstname,lastname,email,password_hash) VALUES('$firstname','$lastname','$email','$hash_pass')";
+    $sql = "INSERT INTO users(firstname,lastname,email,password_hash,restaurant_name) VALUES('$firstname','$lastname','$email','$hash_pass', '$restaurantname')";
     if (!mysqli_query($conn, $sql)) {
         echo "Error inserting data: " . mysqli_error($conn);
         exit;
@@ -60,4 +61,3 @@ if (isset($_POST["submit"])) {
 
     header("Location: login_page.php");
 }
-?>

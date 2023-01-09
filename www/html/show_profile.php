@@ -78,16 +78,18 @@ if (!isset($_SESSION["email"])) {
                         $email_hash = md5($row["email"]);
                         $img = 'https://www.gravatar.com/avatar/' . $email_hash . '?d=retro&f=y';
 
-                        echo "<img class='img-thumbnail mx-2 mt-4' src=" . $img . " alt='Profile Pic'><br><br>";
+                        echo "<img class='img-thumbnail mx-2 mt-2' src=" . $img . " alt='Profile Pic'><br><br>";
 
                         ?>
-                        <div class="container-fluid mt-4">
+                        <div class="container-fluid mt-2">
                             <ul class="list-group list-group-flush">
                                 <?php
+                                echo "<p class='fs-4'>Restaurant: " . $row["restaurant_name"] . "</p>";
                                 echo "<p class='fs-4'>Email: " . $row["email"] . "</p>";
                                 echo "<p class='fs-4'>First Name: " . $row["firstname"] . "</p>";
                                 echo "<p class='fs-4'>Last Name: " . $row["lastname"] . "</p>";
 
+                                $_SESSION["restaurant_name"] = $row["restaurant_name"];
                                 $_SESSION["firstname"] = $row["firstname"];
                                 $_SESSION["lastname"] = $row["lastname"];
 
@@ -96,7 +98,7 @@ if (!isset($_SESSION["email"])) {
                         </div>
                     </div>
                 </div>
-                <div class="card bg-dark text-light mt-3">
+                <div class="card bg-dark text-light mt-2">
                     <div class="card-header">
                         <span class=fs-2>Manage Profile</span>
                     </div>
@@ -113,6 +115,7 @@ if (!isset($_SESSION["email"])) {
                 <div class="card bg-dark text-light">
                     <div class="card-header">
                         <span class=fs-2>Menus</span>
+                        <p class="text-white-50 mb-3">Click on the wanted menu to edit</p>
                     </div>
                     <ul class="list-group list-group-flush">
                         <?php
@@ -130,6 +133,7 @@ if (!isset($_SESSION["email"])) {
                 <div class="card bg-dark text-light">
                     <div class="card-header">
                         <span class=fs-2>Templates</span>
+                        <p class="text-white-50 mb-3">Click on the wanted template to create a menu</p>
                     </div>
                     <ul class="list-group list-group-flush">
                         <?php

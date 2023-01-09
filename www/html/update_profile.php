@@ -27,6 +27,7 @@
     }
 
     if (isset($_POST['submit'])) {
+        $restaurantname = $_POST["restaurantname"];
         $firstname = $_POST["firstname"];
         $lastname = $_POST["lastname"];
         $email = $_POST["email"];
@@ -37,9 +38,15 @@
             exit;
         }
 
+        $restaurantname = mysqli_real_escape_string($conn, $restaurantname);
         $firstname = mysqli_real_escape_string($conn, $firstname);
         $lastname = mysqli_real_escape_string($conn, $lastname);
         $email = mysqli_real_escape_string($conn, $email);
+
+        if ($restaurantname != $_SESSION["restaurant_name"]) {
+            $sql = "UPDATE users SET restaurant_name='$restaurantname' WHERE email='$_SESSION[email]'";
+            mysqli_query($conn, $sql);
+        }
 
         if ($firstname != $_SESSION["firstname"]) {
             $sql = "UPDATE users SET firstname='$firstname' WHERE email='$_SESSION[email]'";
@@ -56,6 +63,7 @@
             mysqli_query($conn, $sql);
         }
 
+        unset($_SESSION["restaurant_name"]);
         unset($_SESSION["firstname"]);
         unset($_SESSION["lastname"]);
         $_SESSION["email"] = $email;
@@ -80,6 +88,10 @@
                                 ?>
                                 <p class="text-white-50 mb-5">Change Informations</p>
                                 <form action="" method="post">
+                                    <div class="form-outline form-white mb-4">
+                                        <input type="text" name="restaurantname" id="typeRestaurantNameX" class="form-control form-control-lg" required value="<?php echo $_SESSION["restaurant_name"] ?>" />
+                                    </div>
+
                                     <div class="form-outline form-white mb-4">
                                         <input type="text" name="firstname" id="typeFirstNameX" class="form-control form-control-lg" required value="<?php echo $_SESSION["firstname"] ?>" />
                                     </div>

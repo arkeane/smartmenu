@@ -5,6 +5,7 @@ CREATE TABLE users (
     lastname varchar(255) NOT NULL,
     email varchar(255) NOT NULL,
     password_hash varchar(255) NOT NULL,
+    restaurant_name varchar(255) NOT NULL,
     PRIMARY KEY (id)
 );
 DROP TABLE IF EXISTS products;
@@ -13,7 +14,8 @@ CREATE TABLE products (
     restaurant_id integer NOT NULL,
     type varchar(255) NOT NULL,
     name varchar(255) NOT NULL,
-    price integer NOT NULL,
+    description varchar(255) NOT NULL,
+    price integer NOT NULL check (price >= 0),
     vegan boolean NOT NULL,
     vegetarian boolean NOT NULL,
     gluten_free boolean NOT NULL,
@@ -21,26 +23,12 @@ CREATE TABLE products (
     PRIMARY KEY (id),
     CONSTRAINT products_restaurant_id_fkey FOREIGN KEY (restaurant_id) REFERENCES users (id) ON DELETE CASCADE
 );
-DROP TABLE IF EXISTS ingredients;
-CREATE TABLE ingredients (
-    id integer NOT NULL AUTO_INCREMENT,
-    restaurant_id integer NOT NULL,
-    name varchar(255) NOT NULL,
-    source varchar(255),
-    PRIMARY KEY (id),
-    CONSTRAINT ingredients_restaurant_id_fkey FOREIGN KEY (restaurant_id) REFERENCES users (id) ON DELETE CASCADE
-);
-DROP TABLE IF EXISTS recipes;
-CREATE TABLE recipes (
-    product_id integer NOT NULL,
-    ingredients_id integer NOT NULL,
-    CONSTRAINT recipes_product_id_fkey FOREIGN KEY (product_id) REFERENCES products (id) ON DELETE CASCADE,
-    CONSTRAINT recipes_ingredients_id_fkey FOREIGN KEY (ingredients_id) REFERENCES ingredients (id) ON DELETE CASCADE
-);
 DROP TABLE IF EXISTS templates;
 CREATE TABLE templates (
     id integer NOT NULL AUTO_INCREMENT,
     name varchar(255) NOT NULL,
+    description varchar(255) NOT NULL,
+    price integer NOT NULL,
     PRIMARY KEY (id)
 );
 DROP TABLE IF EXISTS menus;
@@ -68,4 +56,4 @@ CREATE TABLE bought_templates (
     CONSTRAINT bought_templates_template_id_fkey FOREIGN KEY (template_id) REFERENCES templates (id) ON DELETE CASCADE
 );
 
-INSERT INTO templates (name) VALUES ('default');
+INSERT INTO templates (name, description, price) VALUES ('default', 'Default template', 0);
