@@ -25,8 +25,6 @@ if (!isset($_SESSION["email"])) {
 }
 ?>
 
-
-
 <body>
     <header class="header">
         <nav class="navbar navbar-dark bg-dark navbar-expand-lg bg-body-tertiary">
@@ -51,15 +49,14 @@ if (!isset($_SESSION["email"])) {
         </nav>
     </header>
 
-    <div class="container-fluid mt-4">
+    <div class="container-fluid">
         <div class="row">
-            <div class="col-4" style="width: auto;">
-                <div class="card mb-3" style="width: auto;  background-color:#212529; color:white">
+            <div class="col-4 p-3">
+                <div class="card bg-dark text-light ">
+                    <div class="card-header">
+                        <span class=fs-2>Profile</span>
+                    </div>
                     <div class="card-body">
-                        <div class="card-header">
-                            <h3>Profile</h3>
-                        </div>
-
                         <?php
                         include 'db_config.php';
 
@@ -70,23 +67,41 @@ if (!isset($_SESSION["email"])) {
                         $email_hash = md5($row["email"]);
                         $img = 'https://www.gravatar.com/avatar/' . $email_hash . '?d=retro&f=y';
 
-                        echo "<img src=" . $img . "class='rounded-circle' alt='...'>";
-                        echo "<p class='card-text'>Email: " . $row["email"] . "</p>";
-                        echo "<p class='card-text'>First Name: " . $row["firstname"] . "</p>";
-                        echo "<p class='card-text'>Last Name: " . $row["lastname"] . "</p>";
-
-                        $_SESSION["firstname"] = $row["firstname"];
-                        $_SESSION["lastname"] = $row["lastname"];
+                        echo "<img class='img-thumbnail mx-2 mt-4' src=" . $img . " alt='Profile Pic'><br><br>";
 
                         ?>
-                        <a href="update_profile.php" class="btn btn-outline-light">Edit Profile</a>
+                        <div class="container-fluid mt-4">
+                            <ul class="list-group list-group-flush">
+                                <?php
+                                echo "<p class='fs-4'>Email: " . $row["email"] . "</p>";
+                                echo "<p class='fs-4'>First Name: " . $row["firstname"] . "</p>";
+                                echo "<p class='fs-4'>Last Name: " . $row["lastname"] . "</p>";
+
+                                $_SESSION["firstname"] = $row["firstname"];
+                                $_SESSION["lastname"] = $row["lastname"];
+
+                                ?>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="card bg-dark text-light mt-3">
+                    <div class="card-header">
+                        <span class=fs-2>Manage Profile</span>
+                    </div>
+                    <div class="card-body">
+                        <ul class="list-group list-group-flush">
+                            <a href="update_profile.php" class="btn btn-outline-light">Edit Profile</a>
+                            <a href="change_password.php" class="btn btn-outline-light mt-3">Change Password</a>
+                            <a href="delete_profile.php" class="btn btn-danger mt-3">Delete Profile</a>
+                        </ul>
                     </div>
                 </div>
             </div>
-            <div class="col-4" style="width: auto;">
-                <div class="card" style="width: auto;  background-color:#212529; color:white">
+            <div class="col-5 p-3">
+                <div class="card bg-dark text-light">
                     <div class="card-header">
-                        Menus
+                        <span class=fs-2>Menus</span>
                     </div>
                     <ul class="list-group list-group-flush">
                         <?php
@@ -100,10 +115,10 @@ if (!isset($_SESSION["email"])) {
                     </ul>
                 </div>
             </div>
-            <div class="col-4" style="width: auto;">
-                <div class="card" style="width: auto;  background-color:#212529; color:white">
+            <div class="col p-3">
+                <div class="card bg-dark text-light">
                     <div class="card-header">
-                        Templates
+                        <span class=fs-2>Templates</span>
                     </div>
                     <ul class="list-group list-group-flush">
                         <?php

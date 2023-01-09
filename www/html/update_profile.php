@@ -33,7 +33,7 @@
 
         // filter email
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            echo "Invalid email";
+            header("Location: update_profile.php?error=invalidemail");
             exit;
         }
 
@@ -71,6 +71,13 @@
                             <div class="mb-md-5 mt-md-4 pb-5">
                                 <img src="./img/pizza.svg" alt="logo" width="100" class="mb-4">
                                 <h2 class="fw-bold mb-2 text-uppercase">Update Profile</h2>
+                                <?php
+                                if (isset($_GET["error"])) {
+                                    if ($_GET["error"] == "invalidemail") {
+                                        echo '<p class="text-danger">Invalid email!</p>';
+                                    }
+                                }
+                                ?>
                                 <p class="text-white-50 mb-5">Change Informations</p>
                                 <form action="" method="post">
                                     <div class="form-outline form-white mb-4">

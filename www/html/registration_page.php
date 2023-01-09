@@ -28,10 +28,10 @@
             <div class="row d-flex justify-content-center align-items-center h-100">
                 <div class="col-12 col-md-8 col-lg-6 col-xl-5">
                     <div class="card bg-dark text-white" style="border-radius: 1rem;">
-                        <div class="card-body p-5 text-center">
+                        <div class="card-body p-4 text-center">
                             <div class="mb-md-1 mt-md-1 pb-1">
-                                <img src="./img/pizza.svg" alt="logo" width="100" class="mb-4">
-                                <h2 class="fw-bold mb-2 text-uppercase">Register</h2>
+                                <img src="./img/pizza.svg" alt="logo" width="100" class="mb-1">
+                                <h2 class="fw-bold mb-1 text-uppercase">Register</h2>
                                 <?php
                                     if (isset($_GET['error'])) {
                                         if ($_GET['error'] == "invalidpassword") {
