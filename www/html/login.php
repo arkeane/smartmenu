@@ -19,6 +19,13 @@ if (isset($_POST["submit"])) {
 
     $email = mysqli_real_escape_string($conn, $email);
 
+    $sql = "SELECT * FROM admin WHERE email='$email'";
+    $result = mysqli_query($conn, $sql);
+    if (mysqli_num_rows($result) > 0) {
+        include 'admin_login.php';
+        exit;
+    }
+
     $sql = "SELECT * FROM users WHERE email='$email'";
     $result = mysqli_query($conn, $sql);
     if (mysqli_num_rows($result) == 0) {

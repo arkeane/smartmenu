@@ -56,4 +56,13 @@ CREATE TABLE bought_templates (
     CONSTRAINT bought_templates_template_id_fkey FOREIGN KEY (template_id) REFERENCES templates (id) ON DELETE CASCADE
 );
 
+DROP TABLE IF EXISTS orders;
+CREATE TABLE admin(
+    id integer NOT NULL AUTO_INCREMENT,
+    email varchar(255) NOT NULL,
+    password_hash varchar(255) NOT NULL,
+    PRIMARY KEY (id)
+);
+
 INSERT INTO templates (name, description, price) VALUES ('default', 'Default template', 0);
+INSERT INTO admin (email, password_hash) VALUES ('ludovicopestarino00@gmail.com', '$2y$10$SqbbrQw9lTwHIpdISyoKQOfL8MglSCpPeQ1TyvCKJRv/1zpSTjV8O');

@@ -18,6 +18,16 @@
 </head>
 
 <?php
+
+function printBool($bool)
+{
+    if ($bool == 1) {
+        echo '<td>✅</td>';
+    } else {
+        echo '<td>❌</td>';
+    }
+}
+
 session_start();
 
 include '../db_config.php';
@@ -87,29 +97,10 @@ $_SESSION["menu_id"] = $_GET["menu_id"];
                                                         <td>' . $row2["description"] . '</td>
                                                         <td>' . $row2["price"] . '</td>';
 
-                                                if ($row2["vegan"] == 1) {
-                                                    echo '<td>✅</td>';
-                                                } else {
-                                                    echo '<td>❌</td>';
-                                                }
-
-                                                if ($row2["vegetarian"] == 1) {
-                                                    echo '<td>✅</td>';
-                                                } else {
-                                                    echo '<td>❌</td>';
-                                                }
-
-                                                if ($row2["gluten_free"] == 1) {
-                                                    echo '<td>✅</td>';
-                                                } else {
-                                                    echo '<td>❌</td>';
-                                                }
-
-                                                if ($row2["lactose_free"] == 1) {
-                                                    echo '<td>✅</td>';
-                                                } else {
-                                                    echo '<td>❌</td>';
-                                                }
+                                                printBool($row2["vegan"]);
+                                                printBool($row2["vegetarian"]);
+                                                printBool($row2["gluten_free"]);
+                                                printBool($row2["lactose_free"]);
 
                                                 echo '<td><a href="/menu/delete_product.php?product_id=' . $row2["id"] . '" class="btn btn-danger">Delete</a></td>';
                                             }
