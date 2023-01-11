@@ -4,4 +4,4 @@ notes/
 docker/secrets/
 www/html/TODO.txt
 cookies
-/www/newsletter/email_secrets.php
+/www/html/newsletter/email_secrets.php
