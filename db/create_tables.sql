@@ -65,4 +65,4 @@ CREATE TABLE admin(
 );
 
 INSERT INTO templates (name, description, price) VALUES ('default', 'Default template', 0);
-INSERT INTO admin (email, password_hash) VALUES ('ludovicopestarino00@gmail.com', '$2y$10$SqbbrQw9lTwHIpdISyoKQOfL8MglSCpPeQ1TyvCKJRv/1zpSTjV8O');
+INSERT INTO admin (email, password_hash) VALUES ('smartmenusaw@gmail.com', '$2y$10$SqbbrQw9lTwHIpdISyoKQOfL8MglSCpPeQ1TyvCKJRv/1zpSTjV8O');
