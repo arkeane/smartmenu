@@ -11,6 +11,7 @@ if (password_verify($pass, $hash_pass)) {
 
     $_SESSION["email"] = $email;
     $_SESSION["db_id"] = $id;
+    $_SESSION["admin"] = true;
 
     header("Location: /newsletter/send_newsletter.php");
     exit;

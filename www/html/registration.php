@@ -2,17 +2,26 @@
 if (isset($_POST["submit"])) {
     include 'db_config.php';
 
-    $restaurantname = $_POST["restaurantname"];
+    if(!isset($_POST["restaurantname"])){
+        $restaurantname = "default";
+    }
+    else{
+        $restaurantname = $_POST["restaurantname"];
+    }
+
     $firstname = $_POST["firstname"];
     $lastname = $_POST["lastname"];
     $email = $_POST["email"];
     $pass = $_POST["pass"];
     $confirm = $_POST["confirm"];
+    
 
     if (empty($firstname) || empty($lastname) || empty($email) || empty($pass) || empty($confirm) || empty($restaurantname)) {
         echo "Please fill all the fields";
         exit;
     }
+
+    
 
     $restaurantname = mysqli_real_escape_string($conn, $restaurantname);
     $firstname = mysqli_real_escape_string($conn, $firstname);
