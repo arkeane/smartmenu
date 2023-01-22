@@ -1,0 +1,8 @@
+.DS_Store
+.vscode/
+notes/
+docker/secrets/
+www/public_html/TODO.txt
+cookies
+/www/public_html/newsletter/email_secrets.php
+/www/public_html/secret_gpt_key.php
