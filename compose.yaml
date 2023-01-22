@@ -1,0 +1,55 @@
+services:
+  database:
+    image: mariadb:latest
+    container_name: database
+    ports:
+      - 127.0.0.1:3306:3306
+    volumes:
+      - data:/var/lib/mysql
+      - ./db:/docker-entrypoint-initdb.d
+    secrets:
+      - db_root_password
+      - db_user_password
+    environment:
+      TZ: Europe/Rome
+      MYSQL_ALLOW_EMPTY_PASSWORD: no
+      MYSQL_DATABASE: 'demo'
+      MYSQL_USER: 'user'
+      MYSQL_ROOT_PASSWORD_FILE: /run/secrets/db_root_password
+      MYSQL_USER_PASSWORD_FILE: /run/secrets/db_user_password
+    networks:
+      - net
+
+  backend:
+    build: ./docker/php/
+    container_name: backend
+    volumes:
+      - ./www/public_html/:/var/www/html/
+    networks:
+      - net
+
+  webserver:
+    build: ./docker/nginx/
+    container_name: webserver
+    ports:
+      - 6080:80
+    links:
+      - backend
+    volumes:
+      - ./www/html/:/var/www/html/
+    networks:
+      - net
+
+networks:
+  net:
+    driver: bridge
+
+volumes:
+  data:
+
+
+secrets:
+  db_root_password:
+    file: ./docker/secrets/db_root_password.txt
+  db_user_password:
+    file: ./docker/secrets/db_user_password.txt
