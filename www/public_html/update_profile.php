@@ -72,7 +72,7 @@
                                 <p class="text-white-50 mb-5">Change Informations</p>
                                 <form action="" method="post">
                                     <div class="form-outline form-white mb-4">
-                                        <input type="text" name="restaurantname" id="typeRestaurantNameX" class="form-control form-control-lg" required value="<?php echo $_SESSION["restaurant_name"] ?>" />
+                                        <input type="text" name="restaurantname" id="typeRestaurantNameX" class="form-control form-control-lg" placeholder="Restaurant Name" required value="<?php echo $_SESSION["restaurant_name"] ?>" />
                                     </div>
 
                                     <div class="form-outline form-white mb-4">
@@ -88,8 +88,9 @@
                                     </div>
 
                                     <button class="btn btn-outline-light btn-lg px-5" type="submit" name="submit" value="submit">Update Profile</button>
-                                    <button class="btn btn-outline-light btn-lg px-5" href="show_profile.php" name="submit" value="submit">Cancel</button>
+
                                 </form>
+                                <a class="btn btn-outline-light btn-lg px-5" href="show_profile.php">Cancel</button>
                             </div>
                         </div>
                     </div>
