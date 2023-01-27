@@ -17,33 +17,35 @@
                 <?php
 
                 if (isset($_SESSION["email"])) {
+                    //$root = '/~S4832423';
+                    $root = '';
                     echo '
                             <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="/~S4832423/show_profile.php">Profile</a>
+                                <a class="nav-link active" aria-current="page" href="'.$root.'/show_profile.php">Profile</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="/~S4832423/logout.php">Logout</a>
+                                <a class="nav-link active" aria-current="page" href="'.$root.'/logout.php">Logout</a>
                             </li>';
                 } else {
                     echo '
                             <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="/~S4832423/login_page.php">Login</a>
+                                <a class="nav-link active" aria-current="page" href="'.$root.'/login_page.php">Login</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="/~S4832423/registration_page.php">Registration</a>
+                                <a class="nav-link active" aria-current="page" href="'.$root.'/registration_page.php">Registration</a>
                             </li>';
                 }
                 ?>
             </ul>
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="/~S4832423/market/market.php">Template Market</a>
+                    <a class="nav-link active" aria-current="page" href="'.$root.'/market/market.php">Template Market</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="/~S4832423/about.php">About</a>
+                    <a class="nav-link active" aria-current="page" href="'.$root.'/about.php">About</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="/~S4832423/contact.php">Contact</a>
+                    <a class="nav-link active" aria-current="page" href="'.$root.'/contact.php">Contact</a>
                 </li>
             </ul>
         </div>
