@@ -37,11 +37,6 @@
             exit;
         }
 
-        $restaurantname = mysqli_real_escape_string($conn, $restaurantname);
-        $firstname = mysqli_real_escape_string($conn, $firstname);
-        $lastname = mysqli_real_escape_string($conn, $lastname);
-        $email = mysqli_real_escape_string($conn, $email);
-
         $sql = mysqli_prepare($conn, "UPDATE users SET restaurant_name=?, firstname=?, lastname=?, email=? WHERE email=?");
         mysqli_stmt_bind_param($sql, "sssss", $restaurantname, $firstname, $lastname, $email, $_SESSION["email"]);
         mysqli_stmt_execute($sql);

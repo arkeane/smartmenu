@@ -14,6 +14,24 @@ if (isset($_POST["submitrating"])) {
         exit;
     }
 
+    $sql = mysqli_prepare($conn, "SELECT * FROM bought_templates WHERE template_id = ? AND restaurant_id = ?");
+    mysqli_stmt_bind_param($sql, "ii", $_POST["template_id"], $_SESSION["db_id"]);
+    mysqli_stmt_execute($sql);
+    $result = mysqli_stmt_get_result($sql);
+    if (mysqli_num_rows($result) == 0) {
+        header("location: ../market/market.php?error=notbought");
+        exit;
+    }
+
+    $sql = mysqli_prepare($conn, "SELECT * FROM evaluations WHERE template_id = ? AND restaurant_id = ?");
+    mysqli_stmt_bind_param($sql, "ii", $_POST["template_id"], $_SESSION["db_id"]);
+    mysqli_stmt_execute($sql);
+    $result = mysqli_stmt_get_result($sql);
+    if (mysqli_num_rows($result) > 0) {
+        header("location: ../market/market.php?error=alreadyrated");
+        exit;
+    }
+
     $template_id = $_POST["template_id"];
     $rating = $_POST["rating"];
     $user_id = $_SESSION["db_id"];

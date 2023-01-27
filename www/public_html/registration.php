@@ -22,13 +22,6 @@ if (isset($_POST["submit"])) {
         exit;
     }
 
-
-    $restaurantname = mysqli_real_escape_string($conn, $restaurantname);
-    $firstname = mysqli_real_escape_string($conn, $firstname);
-    $lastname = mysqli_real_escape_string($conn, $lastname);
-    $email = mysqli_real_escape_string($conn, $email);
-
-
     // check if password respect the requirements at least 8 characters, 1 uppercase, 1 lowercase, 1 number
     if(isValidPassword($pass) == false) {
         header("Location: registration_page.php?error=invalidpassword");

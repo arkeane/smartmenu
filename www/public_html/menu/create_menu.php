@@ -15,8 +15,6 @@ if (isset($_POST['submit'])) {
         die("Please fill in all fields");
     }
 
-    $menu_name = mysqli_real_escape_string($conn, $menu_name);
-
     // check if menu name is unique for restaurant_id
     $sql = mysqli_prepare($conn, "SELECT * FROM menus WHERE name=? AND restaurant_id=?");
     mysqli_stmt_bind_param($sql, "si", $menu_name, $_SESSION['db_id']);

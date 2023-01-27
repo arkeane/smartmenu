@@ -66,7 +66,6 @@
                 echo '<h1 class="text-center mt-3 text-light">Search results for "' . $_POST["searchbar"] . '"</h1>';
                 $search = $_POST["searchbar"];
             }
-            $search = mysqli_real_escape_string($conn, $search);
         }
 
         $sql = mysqli_prepare($conn, "SELECT * FROM templates");

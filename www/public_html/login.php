@@ -19,8 +19,6 @@ if (isset($_POST["submit"])) {
         die("Invalid email");
     }
 
-    $email = mysqli_real_escape_string($conn, $email);
-
     $sql = mysqli_prepare($conn, "SELECT * FROM admin WHERE email=?");
     mysqli_stmt_bind_param($sql, "s", $email);
     mysqli_stmt_execute($sql);

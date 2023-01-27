@@ -28,11 +28,6 @@ if (isset($_POST["submit_product"])) {
         exit();
     }
 
-    $productname = mysqli_real_escape_string($conn, $productname);
-    $product_type = mysqli_real_escape_string($conn, $product_type);
-    $product_description = mysqli_real_escape_string($conn, $product_description);
-    $product_price = mysqli_real_escape_string($conn, $product_price);
-
     // use prepared statement to prevent sql injection
     $insertproductquery = mysqli_prepare($conn, "INSERT INTO products (name, type, description, price, vegan, vegetarian, gluten_free, lactose_free, restaurant_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
