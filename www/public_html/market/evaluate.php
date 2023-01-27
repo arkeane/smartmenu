@@ -49,9 +49,6 @@ if (isset($_POST["submitrating"])) {
         $rating = 1;
     }
 
-    $template_id = mysqli_real_escape_string($conn, $template_id);
-    $rating = mysqli_real_escape_string($conn, $rating);
-
     $sql = mysqli_prepare($conn, "INSERT INTO evaluations(restaurant_id,template_id,rating) VALUES(?,?,?)");
     mysqli_stmt_bind_param($sql, "iii", $user_id, $template_id, $rating);
     if (!mysqli_stmt_execute($sql)) {

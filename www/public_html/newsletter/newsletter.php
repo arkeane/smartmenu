@@ -47,10 +47,6 @@ if (isset($_POST['submit'])) {
     $content = $_POST['content'];
     $date = date("Y-m-d H:i:s");
 
-    $subject = mysqli_real_escape_string($conn, $subject);
-    $content = mysqli_real_escape_string($conn, $content);
-    $date = mysqli_real_escape_string($conn, $date);
-
     //send newsletter to all users
     foreach ($emails as $to) {
         try {
