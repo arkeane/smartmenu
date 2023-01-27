@@ -58,7 +58,7 @@ if (!isset($_SESSION["admin"])) {
                                             <textarea id="content" name="content" class="form-control form-control-lg" required placeholder=" Content"></textarea>
                                         </div>
                                         <button class="btn btn-outline-light btn-lg px-5" type="submit" name="submit" value="submit">Send</button>
-                                        <a class="btn btn-outline-light btn-lg px-5" href="../logout.php">Exit</a>
+                                        <a class="btn btn-outline-light btn-lg px-5" href="../admin/admin_page.php">Cancel</a>
                                     </form>
                                 </div>
                             </div>

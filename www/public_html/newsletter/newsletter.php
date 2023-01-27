@@ -83,6 +83,6 @@ if (isset($_POST['submit'])) {
             exit;
         }
 
-        header("Location: ../logout.php");
+        header("Location: ../admin/admin_page.php?success=addednewsletter");
     }
 }
