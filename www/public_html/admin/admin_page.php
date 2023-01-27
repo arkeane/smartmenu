@@ -48,7 +48,7 @@
                                 <p class="text-white-50 mb-5">Choose activity</p>
                                 <div class="list-group">
                                     <a class="btn btn-outline-light btn-lg px-5" href="../newsletter/send_newsletter.php">newsletter</a>
-                                    <a class="btn btn-outline-light btn-lg px-5 mt-3" href="../blog/create_post.php">create blog post</a>
+                                    <a class="btn btn-outline-light btn-lg px-5 mt-3" href="../blog/edit_post.php">create blog post</a>
                                     <a class="btn btn-outline-light btn-lg px-5 mt-3" href="add_admin.php">add admin user</a>
                                     <a class="btn btn-outline-light btn-lg px-5 mt-3" href="../#">LULLU</a>
                                     <a class="btn btn-danger btn-lg px-5 mt-3" href="../logout.php">Logout</a>

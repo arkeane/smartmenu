@@ -39,7 +39,7 @@
                                 }
                                 if (isset($_GET["user"])) {
                                     if ($_GET["user"] == "notfound") {
-                                        echo '<p class="text-danger">Wrong Email</p>';
+                                        echo '<p class="text-danger">Admin Not Found</p>';
                                     }
                                 }
                                 ?>

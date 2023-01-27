@@ -20,7 +20,7 @@ if (isset($_POST["submit"])) {
     mysqli_stmt_execute($sql);
     $result = mysqli_stmt_get_result($sql);
     if (mysqli_num_rows($result) == 0) {
-        header("Location: admin_login_page.php?admin=notadmin");
+        header("Location: admin_login_page.php?user=notfound");
         exit;
     }
 
