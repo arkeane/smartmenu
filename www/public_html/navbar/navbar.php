@@ -1,12 +1,15 @@
 <nav class="navbar navbar-dark bg-dark navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
-        <img class="mx-3" src="/~S4832423/img/default.svg" alt="Smartmenu Logo" width="30" height="30">
+        
         <?php
+        //$root = '/~S4832423';
+        $root = '';
         $pagename = basename($_SERVER['PHP_SELF']);
+        echo '<img class="mx-3" src="'.$root.'/img/default.svg" alt="Smartmenu Logo" width="30" height="30">';
         if ($pagename == "index.php") {
             echo '<a class="navbar-brand" href="index.php">SmartMenu</a>';
         } else {
-            echo '<a class="navbar-brand" href="/~S4832423/index.php">HOME</a>';
+            echo '<a class="navbar-brand" href="'.$root.'/index.php">HOME</a>';
         }
         ?>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -17,8 +20,6 @@
                 <?php
 
                 if (isset($_SESSION["email"])) {
-                    //$root = '/~S4832423';
-                    $root = '';
                     echo '
                             <li class="nav-item">
                                 <a class="nav-link active" aria-current="page" href="'.$root.'/show_profile.php">Profile</a>
@@ -35,8 +36,8 @@
                                 <a class="nav-link active" aria-current="page" href="'.$root.'/registration_page.php">Registration</a>
                             </li>';
                 }
-                ?>
-            </ul>
+                
+            echo '</ul>
             <ul class="navbar-nav">
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="'.$root.'/market/market.php">Template Market</a>
@@ -47,7 +48,8 @@
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="'.$root.'/contact.php">Contact</a>
                 </li>
-            </ul>
+            </ul>';
+            ?>
         </div>
     </div>
 </nav>

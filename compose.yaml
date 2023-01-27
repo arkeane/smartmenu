@@ -36,7 +36,7 @@ services:
     links:
       - backend
     volumes:
-      - ./www/html/:/var/www/html/
+      - ./www/public_html/:/var/www/html/
     networks:
       - net
 

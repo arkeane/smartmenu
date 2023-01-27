@@ -80,6 +80,7 @@ CREATE TABLE newsletters(
     PRIMARY KEY (id)
 );
 
+/*
 INSERT INTO templates (name, description, price, image)
 VALUES ('default', 'Default template', 0, '/~S4832423/img/default.svg');
 INSERT INTO templates (name, description, price, image)
@@ -96,6 +97,24 @@ INSERT INTO templates (name, description, price, image)
 VALUES ('christmas', 'Christmas time', 10, '/~S4832423/img/christmas.svg');
 INSERT INTO templates (name, description, price, image)
 VALUES ('easter', 'Happy Easter', 10, '/~S4832423/img/easter.svg');
+*/
+INSERT INTO templates (name, description, price, image)
+VALUES ('default', 'Default template', 0, '/img/default.svg');
+INSERT INTO templates (name, description, price, image)
+VALUES ('slice', 'Pizza template', 10, '/img/slice.svg');
+INSERT INTO templates (name, description, price, image)
+VALUES ('cake', 'Cake template useful for bakeries', 10, '/img/cake.svg');
+INSERT INTO templates (name, description, price, image)
+VALUES ('pasta', 'Pasta themed', 10, '/img/pasta.svg');
+INSERT INTO templates (name, description, price, image)
+VALUES ('salad', 'Vegetarian menus', 10, '/img/salad.svg');
+INSERT INTO templates (name, description, price, image)
+VALUES ('oven', 'For pizza places', 10, '/img/oven.svg');
+INSERT INTO templates (name, description, price, image)
+VALUES ('christmas', 'Christmas time', 10, '/img/christmas.svg');
+INSERT INTO templates (name, description, price, image)
+VALUES ('easter', 'Happy Easter', 10, '/img/easter.svg');
+
 INSERT INTO admin (email, password_hash)
 VALUES (
         'smartmenusaw@gmail.com',
