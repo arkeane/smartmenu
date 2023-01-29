@@ -70,9 +70,9 @@
                                 if(mysqli_num_rows($result2) > 0){
                                     while($comments = mysqli_fetch_assoc($result2)){
                                         //control for admin
-                                        if($_SESSION["admin"] == 1){
+                                        if($_SESSION["admin"]===true){
 
-                                            echo '<p class="card-text"><small class="text-muted">Posted by SmartMenu</small></p>
+                                            echo '<p class="card-text"><small class="text-bold">SmartMenu</small></p>
                                             <p class="card-text"><small class="text-muted">' . $comments["comment_date"] . '</small></p>
                                             <p class="card-text"><small>' . $comments["comment"] . '</small></p>';
 
@@ -83,14 +83,14 @@
                                             $result3 = mysqli_stmt_get_result($sql3);
                                             $restaurant = mysqli_fetch_assoc($result3);
                                             
-                                            echo '<p class="card-text"><small class="text-muted">Posted by ' . $restaurant["firstname"] . ' ' . $restaurant["lastname"] . '</small></p>
+                                            echo '<p class="card-text"><small class="text-bold">' . $restaurant["firstname"] . ' ' . $restaurant["lastname"] . '</small></p>
                                             <p class="card-text"><small class="text-muted">' . $comments["comment_date"] . '</small></p>
                                             <p class="card-text"><small>' . $comments["comment"] . '</small></p>';   
                                         }
                                     }
                                 }
-                                echo '<textarea class="form-control" id="comment" name="comment" placeholder="comment"></textarea>
-                                <button type="button" class="btn btn-primary mt-3" id="submit" name="submit">Post Comment</button>
+                                echo '<textarea class="form-control" id="comment" name="comment" required placeholder="comment"></textarea>
+                                <button type="submit" class="btn btn-primary mt-3" id="submit" name="submit" value="submit">Post Comment</button>
                             </form>
                         </div>
                     </div>

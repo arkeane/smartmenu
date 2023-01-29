@@ -9,6 +9,7 @@ if (isset($_POST['submit'])) {
         header("Location: ../login_page.php?error=notloggedin");
     }
 
+
     if(empty($_POST['comment']) || !isset($_POST['comment'])) {
         header("Location: show_blog.php?error=emptyfields");
         exit;
@@ -17,9 +18,9 @@ if (isset($_POST['submit'])) {
     $comment = $_POST['comment'];
     $date= date("Y-m-d H:i:s");
 
-    if($_SESSION["admin"] == 1) {
+    if($_SESSION["admin"]===true) {
         $id=0;
-        $sql = mysqli_prepare($conn, "INSERT INTO blog_comments ( blog_id, user_id, comment, comment_date) VALUES (?, ?, ?, ?)");
+        $sql = mysqli_prepare($conn, "INSERT INTO blog_comments ( blog_id, restaurant_id, comment, comment_date) VALUES (?, ?, ?, ?)");
         mysqli_stmt_bind_param($sql, "iiss", $_SESSION["blog_id"], $id, $comment, $date);
         if(!mysqli_stmt_execute($sql)) {
             header("Location: show_blog.php?error=sqlerror");
@@ -34,7 +35,7 @@ if (isset($_POST['submit'])) {
         $row = mysqli_fetch_assoc($result);
         $id = $row["id"];
 
-        $sql = mysqli_prepare($conn, "INSERT INTO blog_comments ( blog_id, user_id, comment, comment_date) VALUES (?, ?, ?, ?)");
+        $sql = mysqli_prepare($conn, "INSERT INTO blog_comments ( blog_id, restaurant_id, comment, comment_date) VALUES (?, ?, ?, ?)");
         mysqli_stmt_bind_param($sql, "iiss", $_SESSION["blog_id"], $id, $comment, $date);
         if(!mysqli_stmt_execute($sql)) {
             header("Location: show_blog.php?error=sqlerror");
