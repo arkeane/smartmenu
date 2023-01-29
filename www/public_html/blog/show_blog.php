@@ -27,24 +27,71 @@
     require '../db_config.php';
     include '../navbar/navbar.php';
 
+    //control get error message
+    if(isset($_GET["error"])){
+        if($_GET["error"] == "emptyfields"){
+            echo '<p class="text-danger">Please fill in all fields!</p>';
+        } else if($_GET["error"] == "sqlerror"){
+            echo '<p class="text-danger">Something went wrong!</p>';
+        }
+    }
+    //control get success message
+    if(isset($_GET["success"])){
+        if($_GET["success"] == "addedcomment"){
+            echo '<p class="text-success">Comment added!</p>';
+        }
+    }
     ?>
     <h1 class="text-center text-light mt-5">Blog</h1>
 
     <div class="container-flex p-4">
         <?php
 
-        // get all menu items
+        // get all blog posts
         $sql = mysqli_prepare($conn, "SELECT * FROM blog ORDER BY id DESC");
         mysqli_stmt_execute($sql);
         $result = mysqli_stmt_get_result($sql);
         while ($row = mysqli_fetch_assoc($result)) {
+            $_SESSION["blog_id"] = $row["id"];
             echo '<div class="card bg-dark text-light mb-3" style="max-width: device-width;">
                 <div class="row g-0">
                     <div class="col-md-8">
                         <div class="card-body">
-                            <h2 class="card-title">' . $row["title"] . '</h2>
-                            <h6 class="card-subtitle mb-2 text-muted">' . $row["post_date"] . '</h6>
-                            <p class="card-text text-muted">' . $row["content"] . '</p>
+                            <form action="insert_comment.php" method="post">    
+                                <h2 class="card-title">' . $row["title"] . '</h2>
+                                <h6 class="card-subtitle mb-2 text-muted">' . $row["post_date"] . '</h6>
+                                <p class="card-text ">' . $row["content"] . '</p>';
+                                
+                                //get all comments for each blog post
+                                $sql2 = mysqli_prepare($conn, "SELECT * FROM blog_comments WHERE blog_id=?");
+                                mysqli_stmt_bind_param($sql2, "i", $row["id"]);
+                                mysqli_stmt_execute($sql2);
+                                $result2 = mysqli_stmt_get_result($sql2);
+                                if(mysqli_num_rows($result2) > 0){
+                                    while($comments = mysqli_fetch_assoc($result2)){
+                                        //control for admin
+                                        if($_SESSION["admin"] == 1){
+
+                                            echo '<p class="card-text"><small class="text-muted">Posted by SmartMenu</small></p>
+                                            <p class="card-text"><small class="text-muted">' . $comments["comment_date"] . '</small></p>
+                                            <p class="card-text"><small>' . $comments["comment"] . '</small></p>';
+
+                                        } else {//search for restaurant name based on restaurant id
+                                            $sql3 = mysqli_prepare($conn, "SELECT firstname,lastname FROM users WHERE id=?");
+                                            mysqli_stmt_bind_param($sql3, "i", $comments["restaurant_id"]);
+                                            mysqli_stmt_execute($sql3);
+                                            $result3 = mysqli_stmt_get_result($sql3);
+                                            $restaurant = mysqli_fetch_assoc($result3);
+                                            
+                                            echo '<p class="card-text"><small class="text-muted">Posted by ' . $restaurant["firstname"] . ' ' . $restaurant["lastname"] . '</small></p>
+                                            <p class="card-text"><small class="text-muted">' . $comments["comment_date"] . '</small></p>
+                                            <p class="card-text"><small>' . $comments["comment"] . '</small></p>';   
+                                        }
+                                    }
+                                }
+                                echo '<textarea class="form-control" id="comment" name="comment" placeholder="comment"></textarea>
+                                <button type="button" class="btn btn-primary mt-3" id="submit" name="submit">Post Comment</button>
+                            </form>
                         </div>
                     </div>
                 </div>
