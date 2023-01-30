@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 //insert blog comment into database
 if (isset($_POST['submit'])) {
     
@@ -18,7 +18,7 @@ if (isset($_POST['submit'])) {
     $comment = $_POST['comment'];
     $date= date("Y-m-d H:i:s");
 
-    if($_SESSION["admin"]===true) {
+    if(isset($_SESSION["admin"])) {
         $id=0;
         $sql = mysqli_prepare($conn, "INSERT INTO blog_comments ( blog_id, restaurant_id, comment, comment_date) VALUES (?, ?, ?, ?)");
         mysqli_stmt_bind_param($sql, "iiss", $_SESSION["blog_id"], $id, $comment, $date);
@@ -43,5 +43,5 @@ if (isset($_POST['submit'])) {
         }
     }
 
-    header("Location: show_blog.php?success=addedcomment");
+    header("Location: show_blog.php");
 }
