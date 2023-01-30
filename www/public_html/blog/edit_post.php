@@ -2,7 +2,7 @@
 <html lang=en>
 
 <head>
-    <title>Send Newsletter</title>
+    <title>Create New Post</title>
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=yes">
@@ -32,12 +32,12 @@ if (!isset($_SESSION["admin"])) {
 
 <body class="sitewide">
     <section class="vh-100 gradient-custom">
-        <div class="container-flex mt-4 mx-4">
-            <div class="container py-5 h-100">
-                <div class="row d-flex justify-content-center align-items-center h-100">
-                    <div class="col-12 col-md-8 col-lg-6 col-xl-5">
-                        <div class="card bg-dark text-white" style="border-radius: 1rem;">
-                            <div class="card-body p-5 text-center">
+        <div class="container py-5 h-100">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col">
+                    <div class="card bg-dark text-white" style="border-radius: 1rem;">
+                        <div class="card-body p-4 text-center">
+                            <div class="mb-md-1 mt-md-1 pb-1">
                                 <div class="mb-md-5 mt-md-4 pb-5">
                                     <img src="../img/default.svg" alt="logo" width="100" class="mb-1">
                                     <?php
@@ -48,16 +48,16 @@ if (!isset($_SESSION["admin"])) {
                                     }
                                     ?>
                                     <h2 class="fw-bold mb-2 text-uppercase">
-                                        Send Newsletter
+                                        Create New Post
                                     </h2>
-                                    <form action="newsletter.php" method="post">
+                                    <form action="create_post.php" method="post">
                                         <div class="form-outline form-white mb-4">
-                                            <input type="text" name="subject" id="subject" class="form-control form-control-lg" required placeholder="Subject" />
+                                            <input type="text" name="title" id="title" class="form-control form-control-lg" required placeholder="Title" />
                                         </div>
                                         <div class="form-outline form-white mb-4">
                                             <textarea id="content" name="content" class="form-control form-control-lg" required placeholder=" Content"></textarea>
                                         </div>
-                                        <button class="btn btn-outline-light btn-lg px-5" type="submit" name="submit" value="submit">Send</button>
+                                        <button class="btn btn-outline-light btn-lg px-5" type="submit" name="submit" value="submit">Post</button>
                                         <a class="btn btn-outline-light btn-lg px-5" href="../admin/admin_page.php">Cancel</a>
                                     </form>
                                 </div>

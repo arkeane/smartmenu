@@ -79,6 +79,25 @@ CREATE TABLE newsletters(
     mail_date timestamp NOT NULL,
     PRIMARY KEY (id)
 );
+DROP TABLE IF EXISTS blog;
+CREATE TABLE blog(
+    id integer NOT NULL AUTO_INCREMENT,
+    title varchar(255) NOT NULL,
+    content varchar(4096) NOT NULL,
+    post_date timestamp NOT NULL,
+    PRIMARY KEY (id)
+);
+DROP TABLE IF EXISTS blog_comments;
+CREATE TABLE blog_comments(
+    id integer NOT NULL AUTO_INCREMENT,
+    blog_id integer NOT NULL,
+    restaurant_id integer NOT NULL,
+    comment varchar(4096) NOT NULL,
+    comment_date timestamp NOT NULL,
+    PRIMARY KEY (id),
+    CONSTRAINT blog_comments_blog_id_fkey FOREIGN KEY (blog_id) REFERENCES blog (id) ON DELETE CASCADE,
+    CONSTRAINT blog_comments_restaurant_id_fkey FOREIGN KEY (restaurant_id) REFERENCES users (id) ON DELETE CASCADE
+);
 
 /*
 INSERT INTO templates (name, description, price, image)
