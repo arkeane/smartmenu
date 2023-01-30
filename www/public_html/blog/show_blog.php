@@ -37,7 +37,6 @@
         mysqli_stmt_execute($sql);
         $result = mysqli_stmt_get_result($sql);
         while ($row = mysqli_fetch_assoc($result)) {
-            $_SESSION["blog_id"] = $row["id"];
             echo '<div class="card bg-dark text-light mb-3" style="max-width: device-width;">
                 <div class="row g-0">
                     <div class="col-md-8">
@@ -68,7 +67,7 @@
 
                                             echo '<p class="card-text"><small class="text-bold">SmartMenu</small></p>
                                             <p class="card-text"><small class="text-muted">' . $comments["comment_date"] . '</small></p>
-                                            <p class="card-text"><small>' . $comments["comment"] . '</small></p>';
+                                            <p class="card-text"><small>' . $comments["comment"] . '</small></p><br>';
 
                                         } else {//search for restaurant name based on restaurant id
                                             $sql3 = mysqli_prepare($conn, "SELECT firstname,lastname FROM users WHERE id=?");
@@ -79,13 +78,13 @@
                                             
                                             echo '<span class="card-text"><small class="text-bold">' . $restaurant["firstname"] . ' ' . $restaurant["lastname"] . '</small>
                                             <small class="text-muted">' . $comments["comment_date"] . '</small>
-                                            <small>' . $comments["comment"] . '</small></span>';   
+                                            <small>' . $comments["comment"] . '</small></span><br>';   
                                         }
                                     }
                                 }
-                            echo '<form action="comment.php" method="post">
+                            echo '<form action="insert_comment.php" method="post">
                                 <textarea class="form-control mt-3" id="comment" name="comment" required placeholder="comment"></textarea>
-                                <button type="submit" class="btn btn-primary mt-3" id="submit" name="submit" value="submit">Post Comment</button>
+                                <button type="submit" class="btn btn-primary mt-3" id="submit" name="submit" value="' .$row["id"] . '">Post Comment</button>
                             </form>
                         </div>
                     </div>
