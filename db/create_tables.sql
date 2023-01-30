@@ -99,6 +99,17 @@ CREATE TABLE blog_comments(
     CONSTRAINT blog_comments_restaurant_id_fkey FOREIGN KEY (restaurant_id) REFERENCES users (id) ON DELETE CASCADE
 );
 
+DROP TABLE IF EXISTS crowdfunding;
+CREATE TABLE crowdfunding(
+    id integer NOT NULL AUTO_INCREMENT,
+    title varchar(255) NOT NULL,
+    description varchar(4096) NOT NULL,
+    goal integer NOT NULL,
+    current_amount integer NOT NULL,
+    end_date timestamp NOT NULL,
+    success boolean NOT NULL,
+    PRIMARY KEY (id)
+);
 /*
 INSERT INTO templates (name, description, price, image)
 VALUES ('default', 'Default template', 0, '/~S4832423/img/default.svg');

@@ -46,6 +46,9 @@
                     <a class="nav-link active" aria-current="page" href="' . $root . '/blog/show_blog.php">Blog</a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="' . $root . '/crowdfunding/crowdfunding_page.php">CrowdFunding</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="' . $root . '/about.php">About</a>
                 </li>
                 <li class="nav-item">
