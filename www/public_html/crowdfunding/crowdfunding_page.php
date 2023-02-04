@@ -104,7 +104,10 @@ if (isset($_POST["submit"])) {
                                         </div>
                                     </form>';
                                     }
-                                }
+                                }else{
+                                    echo '<div class="alert alert-danger mt-3" role="alert">
+                                    There is no crowdfunding yet!
+                                    </div>';}
                                 ?>
                             </div>
                         </div>
