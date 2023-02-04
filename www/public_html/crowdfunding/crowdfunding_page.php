@@ -17,6 +17,7 @@
 </head>
 
 <?php
+session_start();
 include '../db_config.php';
 include '../navbar/navbar.php';
 
@@ -77,34 +78,34 @@ if (isset($_POST["submit"])) {
                                 $sql = mysqli_prepare($conn, "SELECT * FROM crowdfunding ORDER BY id DESC LIMIT 1");
                                 mysqli_stmt_execute($sql);
                                 $result = mysqli_stmt_get_result($sql);
-                                $row = mysqli_fetch_assoc($result);
-                                $success = printBool($row["success"]);
-                                echo '<div class="align-items-center card bg-dark text-light">
-                                    <div class="card-body">
-                                        <h2 class="card-title">' . $row["title"] . '</h2>
-                                        <p class="card-text">' . $row["description"] . '</p>
-                                        <p class="card-text">' . $row["current_amount"] . '$/' . $row["goal"] . '$</p>
-                                        <p class="card-text"> STATUS ' . $success . '</p>
-                                        <p class="card-text"> DEADLINE -> ' . $row["end_date"] . '</p>
-                                    </div>  
-                                </div> ';
-                                if($row["end_date"] < date("Y-m-d")){
-                                    echo '<div class="alert alert-danger" role="alert">
-                                    This crowdfunding is expired!
-                                    </div>';
-                                } else {
-                                    echo '<form action="" method="post">
-                                    <div class="input-group mb-3">
-                                        <button class="btn btn-outline-secondary" type="submit" name="submit" value="100">+100$</button>
-                                        <button class="btn btn-outline-secondary" type="submit" name="submit" value="1000">+1000$</button>
-                                        <input type="number" class="form-control" name="custom_value" placeholder="Other value">
-                                        <button class="btn btn-outline-secondary" type="submit" name="submit" value="custom">Donate</button>
-                                    </div>
-                                </form>';
+                                if(mysqli_num_rows($result) > 0){
+                                    $row = mysqli_fetch_assoc($result);
+                                    $success = printBool($row["success"]);
+                                    echo '<div class="align-items-center card bg-dark text-light">
+                                        <div class="card-body">
+                                            <h2 class="card-title">' . $row["title"] . '</h2>
+                                            <p class="card-text">' . $row["description"] . '</p>
+                                            <p class="card-text">' . $row["current_amount"] . '$/' . $row["goal"] . '$</p>
+                                            <p class="card-text"> STATUS ' . $success . '</p>
+                                            <p class="card-text"> DEADLINE -> ' . $row["end_date"] . '</p>
+                                        </div>  
+                                    </div> ';
+                                    if($row["end_date"] < date("Y-m-d")){
+                                        echo '<div class="alert alert-danger" role="alert">
+                                        This crowdfunding is expired!
+                                        </div>';
+                                    } else {
+                                        echo '<form action="" method="post">
+                                        <div class="input-group mb-3">
+                                            <button class="btn btn-outline-secondary" type="submit" name="submit" value="100">+100$</button>
+                                            <button class="btn btn-outline-secondary" type="submit" name="submit" value="1000">+1000$</button>
+                                            <input type="number" class="form-control" name="custom_value" placeholder="Other value">
+                                            <button class="btn btn-outline-secondary" type="submit" name="submit" value="custom">Donate</button>
+                                        </div>
+                                    </form>';
+                                    }
                                 }
-
                                 ?>
-                               
                             </div>
                         </div>
                     </div>
