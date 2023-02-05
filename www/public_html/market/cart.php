@@ -61,7 +61,7 @@
                                             echo "<tr>";
                                             echo "<td>$template_name</td>";
                                             echo "<td>€$template_price</td>";
-                                            echo "<td><a class='btn btn-danger' href='remove_from_cart.php?template_id=$template_id'>Remove</a></td>";
+                                            echo "<td><a class='btn btn-danger' href='remove_from_cart.php?template_id=$template_id'>Remove</a></td>";//cancella uno alla volta dal carrello
                                         }
                                         echo "</tbody></table><h1 class='text'>Total: €$total</h1>";
                                         echo '<form action="checkout.php" method="post">

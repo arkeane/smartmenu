@@ -19,6 +19,7 @@ function addToCart(str) {
     xhttp.send("id=" + str);
 }
 
+//blocca valutazione del prodotto se gia effettuata
 function Evaluate(bool, id){
     rateform = "rateform" + id;
     evaluate = "evaluate" + id;
@@ -32,6 +33,7 @@ function Evaluate(bool, id){
     }
 }
 
+//trasform the rating number into stars
 window.onload = function() {
     var elements = document.getElementsByClassName("rating");
     for (var i = 0; i < elements.length; i++) {
