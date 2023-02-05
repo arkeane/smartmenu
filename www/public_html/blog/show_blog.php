@@ -72,24 +72,16 @@
                                     $result2 = mysqli_stmt_get_result($sql2);
                                     if(mysqli_num_rows($result2) > 0){
                                         while($comments = mysqli_fetch_assoc($result2)){
-                                            //control for admin
-                                            if(isset($_SESSION["admin"])){
-
-                                                echo '<p class="card-text"><small class="text-bold">SmartMenu</small></p>
-                                                <p class="card-text"><small class="text-muted">' . $comments["comment_date"] . '</small></p>
-                                                <p class="card-text"><small>' . $comments["comment"] . '</small></p><br>';
-
-                                            } else {//search for restaurant name based on restaurant id
-                                                $sql3 = mysqli_prepare($conn, "SELECT firstname,lastname FROM users WHERE id=?");
-                                                mysqli_stmt_bind_param($sql3, "i", $comments["restaurant_id"]);
-                                                mysqli_stmt_execute($sql3);
-                                                $result3 = mysqli_stmt_get_result($sql3);
-                                                $restaurant = mysqli_fetch_assoc($result3);
+                                            //search for restaurant name based on restaurant id
+                                            $sql3 = mysqli_prepare($conn, "SELECT firstname,lastname FROM users WHERE id=?");
+                                            mysqli_stmt_bind_param($sql3, "i", $comments["restaurant_id"]);
+                                            mysqli_stmt_execute($sql3);
+                                            $result3 = mysqli_stmt_get_result($sql3);
+                                            $restaurant = mysqli_fetch_assoc($result3);
                                                 
-                                                echo '<span class="card-text"><small class="text-bold">' . $restaurant["firstname"] . ' ' . $restaurant["lastname"] . '</small>
-                                                <small class="text-muted">' . $comments["comment_date"] . '</small>
-                                                <small>' . $comments["comment"] . '</small></span><br>';   
-                                            }
+                                            echo '<span class="card-text"><small class="text-bold">' . $restaurant["firstname"] . ' ' . $restaurant["lastname"] . '</small>
+                                            <small class="text-muted">' . $comments["comment_date"] . '</small>
+                                            <small>' . $comments["comment"] . '</small></span><br>';
                                         }
                                     }
                                 echo '<form action="insert_comment.php" method="post">
