@@ -27,10 +27,10 @@ foreach($cart as $template_id) {
         echo "Error inserting data: " . mysqli_error($conn);
         exit;
     }
-
-    // delete cart 
-    setcookie("cart", "", time() - 3600, "/");
-
-    // redirect to user profile
-    header("location: ../show_profile.php");
 }
+
+// delete cart when finished to buy templates
+setcookie("cart", "", time() - 3600, "/");
+
+// redirect to user profile
+header("location: ../show_profile.php");

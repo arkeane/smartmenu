@@ -26,6 +26,11 @@
     }
 
     if (isset($_POST['submit'])) {
+        if(!isset($_POST["firstname"]) || !isset($_POST["lastname"]) || !isset($_POST["email"]) || empty($_POST["firstname"]) || empty($_POST["lastname"]) || empty($_POST["email"])){
+            header("Location: update_profile.php?error=emptyfields");
+            exit;
+        }
+        
         $restaurantname = $_POST["restaurantname"];
         $firstname = $_POST["firstname"];
         $lastname = $_POST["lastname"];
@@ -41,6 +46,7 @@
         mysqli_stmt_bind_param($sql, "sssss", $restaurantname, $firstname, $lastname, $email, $_SESSION["email"]);
         mysqli_stmt_execute($sql);
 
+        //unset leva specifica variabile dalla sessione
         unset($_SESSION["restaurant_name"]);
         unset($_SESSION["firstname"]);
         unset($_SESSION["lastname"]);

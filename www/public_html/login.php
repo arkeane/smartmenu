@@ -15,6 +15,7 @@ if (isset($_POST["submit"])) {
         die("Please fill all the fields");
     }
 
+    //funzione che controlla validita email
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         die("Invalid email");
     }
@@ -29,6 +30,7 @@ if (isset($_POST["submit"])) {
         exit;
     }
 
+    //prende una riga alla volta del risultato della query
     $row = mysqli_fetch_assoc($result);
     $hash_pass = $row["password_hash"];
 
@@ -41,7 +43,7 @@ if (isset($_POST["submit"])) {
         $id = $row["id"];
 
         $_SESSION["email"] = $email;
-        $_SESSION["db_id"] = $id;
+        $_SESSION["db_id"] = $id;//email non univoca quindi prendo id utente univoco
 
         header("Location: show_profile.php");
         exit;
