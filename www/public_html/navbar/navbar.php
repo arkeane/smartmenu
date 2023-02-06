@@ -2,8 +2,8 @@
     <div class="container-fluid">
 
         <?php
-        //$root = '/~S4832423';
-        $root = '';
+        $root = '/~S4832423';
+        //$root = '';
         $pagename = basename($_SERVER['PHP_SELF']);
         echo '<img class="mx-3" src="' . $root . '/img/default.svg" alt="Smartmenu Logo" width="30" height="30">';
         if ($pagename == "index.php") {

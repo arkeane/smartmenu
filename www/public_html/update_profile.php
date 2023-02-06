@@ -26,16 +26,27 @@
     }
 
     if (isset($_POST['submit'])) {
-        if(!isset($_POST["firstname"]) || !isset($_POST["lastname"]) || !isset($_POST["email"]) || empty($_POST["firstname"]) || empty($_POST["lastname"]) || empty($_POST["email"])){
+        if (!isset($_POST["firstname"]) || !isset($_POST["lastname"]) || empty($_POST["firstname"]) || empty($_POST["lastname"])) {
             header("Location: update_profile.php?error=emptyfields");
             exit;
         }
-        
-        $restaurantname = $_POST["restaurantname"];
         $firstname = $_POST["firstname"];
         $lastname = $_POST["lastname"];
-        $email = $_POST["email"];
 
+        if(!isset($_POST["restaurantname"]) || empty($_POST["restaurantname"])){
+            $restaurantname = $_SESSION["restaurant_name"];
+        }
+        else{
+            $restaurantname = $_POST["restaurantname"];
+        }
+
+        if(!isset($_POST["email"]) || empty($_POST["email"])){
+            $email = $_SESSION["email"];
+        }
+        else{
+            $email = $_POST["email"];
+        }
+        
         // filter email
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
             header("Location: update_profile.php?error=invalidemail");
@@ -91,7 +102,7 @@
                                     <button class="btn btn-outline-light btn-lg px-5" type="submit" name="submit" value="submit">Update Profile</button>
 
                                 </form>
-                                <a class="btn btn-outline-light btn-lg px-5" href="show_profile.php">Cancel</button>
+                                <a class="btn btn-outline-light btn-lg px-5" href="show_profile.php">Cancel</a>
                             </div>
                         </div>
                     </div>
