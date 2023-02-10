@@ -6,6 +6,7 @@ CREATE TABLE users (
     email varchar(255) NOT NULL,
     password_hash varchar(255) NOT NULL,
     restaurant_name varchar(255) NOT NULL,
+    newsletters boolean NOT NULL,
     PRIMARY KEY (id)
 );
 DROP TABLE IF EXISTS products;

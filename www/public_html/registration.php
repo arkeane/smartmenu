@@ -15,6 +15,7 @@ if (isset($_POST["submit"])) {
     $email = $_POST["email"];
     $pass = $_POST["pass"];
     $confirm = $_POST["confirm"];
+    $newsletter = $_POST["newsletter"] ? 1 : 0;
 
 
     if (empty($firstname) || empty($lastname) || empty($email) || empty($pass) || empty($confirm) || empty($restaurantname)) {
@@ -44,8 +45,8 @@ if (isset($_POST["submit"])) {
         exit;
     }
 
-    $sql = mysqli_prepare($conn, "INSERT INTO users(firstname,lastname,email,password_hash,restaurant_name) VALUES(?,?,?,?,?)");
-    mysqli_stmt_bind_param($sql, "sssss", $firstname, $lastname, $email, $hash_pass, $restaurantname);
+    $sql = mysqli_prepare($conn, "INSERT INTO users(firstname,lastname,email,password_hash,restaurant_name) VALUES(?,?,?,?,?,?)");
+    mysqli_stmt_bind_param($sql, "sssss", $firstname, $lastname, $email, $hash_pass, $restaurantname, $newsletter);
     if (!mysqli_stmt_execute($sql)) {
         echo "Error inserting data: " . mysqli_error($conn);
         exit;

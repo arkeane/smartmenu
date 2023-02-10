@@ -23,7 +23,7 @@ if (!isset($_SESSION["admin"])) {
 if (isset($_POST['submit'])) {
 
     //get all emails from users table
-    $sql = mysqli_prepare($conn, "SELECT email, firstname, lastname FROM users");
+    $sql = mysqli_prepare($conn, "SELECT email, firstname, lastname FROM users WHERE newsletter=1");
     mysqli_stmt_execute($sql);
     $result = mysqli_stmt_get_result($sql);
     $emails = mysqli_fetch_all($result, MYSQLI_ASSOC);

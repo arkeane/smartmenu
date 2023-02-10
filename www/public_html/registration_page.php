@@ -75,6 +75,8 @@
 
                                     <input type="checkbox" onclick="showPass()" aria-label="Show Password Checkbox">Show Password</input><br><br>
 
+                                    <input type="checkbox" name="newsletter" id="newsletter"> subscribe newsletter</input>
+
                                     <button class="btn btn-outline-light btn-lg px-5" type="submit" name="submit" value="submit">Register</button>
                                     <a class="btn btn-outline-light btn-lg px-5" href="index.php">Cancel</a>
                                 </form>
