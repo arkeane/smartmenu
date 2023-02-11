@@ -73,10 +73,11 @@
                                         <input type="password" name="confirm" id="typePasswordConfirm" class="form-control form-control-lg" required placeholder="Confirm Password" aria-label="Confirm Password" />
                                     </div>
 
-                                    <input type="checkbox" onclick="showPass()" aria-label="Show Password Checkbox">Show Password</input><br><br>
+                                    <ul>
+                                        <input type="checkbox" onclick="showPass()" aria-label="Show Password Checkbox">Show Password</input><br><br>
 
-                                    <input type="checkbox" name="newsletter" id="newsletter"> subscribe newsletter</input>
-
+                                        <input type="checkbox" name="newsletter" id="newsletter"> subscribe newsletter</input>
+                                    </ul>
                                     <button class="btn btn-outline-light btn-lg px-5" type="submit" name="submit" value="submit">Register</button>
                                     <a class="btn btn-outline-light btn-lg px-5" href="index.php">Cancel</a>
                                 </form>
