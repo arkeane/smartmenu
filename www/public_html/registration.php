@@ -45,8 +45,8 @@ if (isset($_POST["submit"])) {
         exit;
     }
 
-    $sql = mysqli_prepare($conn, "INSERT INTO users(firstname,lastname,email,password_hash,restaurant_name) VALUES(?,?,?,?,?,?)");
-    mysqli_stmt_bind_param($sql, "sssss", $firstname, $lastname, $email, $hash_pass, $restaurantname, $newsletter);
+    $sql = mysqli_prepare($conn, "INSERT INTO users(firstname,lastname,email,password_hash,restaurant_name,newsletters) VALUES(?,?,?,?,?,?)");
+    mysqli_stmt_bind_param($sql, "sssssi", $firstname, $lastname, $email, $hash_pass, $restaurantname, $newsletter);
     if (!mysqli_stmt_execute($sql)) {
         echo "Error inserting data: " . mysqli_error($conn);
         exit;

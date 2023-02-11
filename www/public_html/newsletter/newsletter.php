@@ -23,12 +23,12 @@ if (!isset($_SESSION["admin"])) {
 if (isset($_POST['submit'])) {
 
     //get all emails from users table
-    $sql = mysqli_prepare($conn, "SELECT email, firstname, lastname FROM users WHERE newsletter=1");
+    $sql = mysqli_prepare($conn, "SELECT email, firstname, lastname FROM users WHERE newsletters=1");
     mysqli_stmt_execute($sql);
     $result = mysqli_stmt_get_result($sql);
     $emails = mysqli_fetch_all($result, MYSQLI_ASSOC);
     if (!$emails) {
-        header("Location: ../logout.php");
+        header("Location: ../admin/admin_page.php?error=emptynewsletter");
         exit;
     }
 
