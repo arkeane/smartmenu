@@ -80,11 +80,6 @@ $_SESSION["menu_id"] = $_GET["menu_id"];
                                 $image = $row["image"];
 
                                 echo '<img src="' . $image . '" alt="logo" width="100" class="mb-1">';
-                                $sql = mysqli_prepare($conn, "SELECT restaurant_name FROM users WHERE id=?");
-                                mysqli_stmt_bind_param($sql, "i", $_SESSION['db_id']);
-                                mysqli_stmt_execute($sql);
-                                $result = mysqli_stmt_get_result($sql);
-                                $row = mysqli_fetch_assoc($result);
                                 echo "<h2 class='fw-bold mb-2 text-uppercase'>$menu_name</h2>";
                                 echo "<p class='text-white-50 mb-3'>Please Insert Products</p>";
 
