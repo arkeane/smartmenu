@@ -28,11 +28,22 @@
     include '../navbar/navbar.php';
     ?>
     <div class="card bg-dark text-white mt-3 p-3">
-    <h1 class="text-center text-light mt-3 mb-3">Blog</h1>
+        <h1 class="text-center text-light mt-3 mb-3">Blog</h1>
+        <?php
+        if (isset($_GET["error"])) {
+            if ($_GET["error"] == "emptyfields") {
+                echo '<p class="text-danger text-center">Please fill in all fields!</p>';
+            } else if ($_GET["error"] == "sqlerror") {
+                echo '<p class="text-danger text-center">Something went wrong!</p>';
+            }
+        }
+        ?>
     </div>
 
     <div class="container-flex p-4">
         <?php
+
+
 
         // get all blog posts
         $sql = mysqli_prepare($conn, "SELECT * FROM blog ORDER BY id DESC");
@@ -45,6 +56,8 @@
                     <p>There are no blog posts available at the moment. Please check back later.</p>
                 </div>
             </div>';
+            //control get error message
+
         } else {
             while ($row = mysqli_fetch_assoc($result)) {
                 echo '<div class="card bg-dark text-light mb-3" style="max-width: device-width;">
@@ -55,38 +68,31 @@
                                     <h6 class="card-subtitle mb-2 text-muted">' . $row["post_date"] . '</h6>
                                     <p class="card-text ">' . $row["content"] . '</p>
                                     <hr><h3>Comments</h3>';
-                                    
-                                    //control get error message
-                                    if(isset($_GET["error"])){
-                                        if($_GET["error"] == "emptyfields"){
-                                            echo '<p class="text-danger">Please fill in all fields!</p>';
-                                        } else if($_GET["error"] == "sqlerror"){
-                                            echo '<p class="text-danger">Something went wrong!</p>';
-                                        }
-                                    }
 
-                                    //get all comments for each blog post
-                                    $sql2 = mysqli_prepare($conn, "SELECT * FROM blog_comments WHERE blog_id=?");
-                                    mysqli_stmt_bind_param($sql2, "i", $row["id"]);
-                                    mysqli_stmt_execute($sql2);
-                                    $result2 = mysqli_stmt_get_result($sql2);
-                                    if(mysqli_num_rows($result2) > 0){
-                                        while($comments = mysqli_fetch_assoc($result2)){
-                                            //search for restaurant name based on restaurant id
-                                            $sql3 = mysqli_prepare($conn, "SELECT firstname,lastname FROM users WHERE id=?");
-                                            mysqli_stmt_bind_param($sql3, "i", $comments["restaurant_id"]);
-                                            mysqli_stmt_execute($sql3);
-                                            $result3 = mysqli_stmt_get_result($sql3);
-                                            $restaurant = mysqli_fetch_assoc($result3);
-                                                
-                                            echo '<span class="card-text"><small class="text-bold">' . $restaurant["firstname"] . ' ' . $restaurant["lastname"] . '</small>
+
+
+                //get all comments for each blog post
+                $sql2 = mysqli_prepare($conn, "SELECT * FROM blog_comments WHERE blog_id=?");
+                mysqli_stmt_bind_param($sql2, "i", $row["id"]);
+                mysqli_stmt_execute($sql2);
+                $result2 = mysqli_stmt_get_result($sql2);
+                if (mysqli_num_rows($result2) > 0) {
+                    while ($comments = mysqli_fetch_assoc($result2)) {
+                        //search for restaurant name based on restaurant id
+                        $sql3 = mysqli_prepare($conn, "SELECT firstname,lastname FROM users WHERE id=?");
+                        mysqli_stmt_bind_param($sql3, "i", $comments["restaurant_id"]);
+                        mysqli_stmt_execute($sql3);
+                        $result3 = mysqli_stmt_get_result($sql3);
+                        $restaurant = mysqli_fetch_assoc($result3);
+
+                        echo '<span class="card-text"><small class="text-bold">' . $restaurant["firstname"] . ' ' . $restaurant["lastname"] . '</small>
                                             <small class="text-muted">' . $comments["comment_date"] . '</small>
                                             <small>' . $comments["comment"] . '</small></span><br>';
-                                        }
-                                    }
-                                echo '<form action="insert_comment.php" method="post">
+                    }
+                }
+                echo '<form action="insert_comment.php" method="post">
                                     <textarea class="form-control mt-3" id="comment" name="comment" required placeholder="comment"></textarea>
-                                    <button type="submit" class="btn btn-primary mt-3" id="submit" name="submit" value="' .$row["id"] . '">Post Comment</button>
+                                    <button type="submit" class="btn btn-primary mt-3" id="submit" name="submit" value="' . $row["id"] . '">Post Comment</button>
                                 </form>
                             </div>
                         </div>
