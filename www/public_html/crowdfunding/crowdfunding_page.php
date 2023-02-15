@@ -37,14 +37,15 @@ if (isset($_POST["submit"])) {
     $value = $_POST['submit'];
     if ($value === "custom") {
         if (!isset($_POST['custom_value']) || empty($_POST['custom_value'])) {
-            exit;
+            $value = 0;
+        } else {
+            $value = $_POST['custom_value'];
         }
-        $value = $_POST['custom_value'];
     }
 
     $sql = mysqli_prepare($conn, "UPDATE crowdfunding SET current_amount = current_amount + ? ORDER BY id DESC LIMIT 1");
     mysqli_stmt_bind_param($sql, "i", $value);
-    if(!mysqli_stmt_execute($sql)){
+    if (!mysqli_stmt_execute($sql)) {
         echo "Error: " . $sql . "<br>" . mysqli_error($conn);
     }
 
@@ -56,8 +57,6 @@ if (isset($_POST["submit"])) {
         $sql = mysqli_prepare($conn, "UPDATE crowdfunding SET success = true ORDER BY id DESC LIMIT 1");
         mysqli_stmt_execute($sql);
     }
-    
-
 }
 
 
@@ -78,7 +77,7 @@ if (isset($_POST["submit"])) {
                                 $sql = mysqli_prepare($conn, "SELECT * FROM crowdfunding ORDER BY id DESC LIMIT 1");
                                 mysqli_stmt_execute($sql);
                                 $result = mysqli_stmt_get_result($sql);
-                                if(mysqli_num_rows($result) > 0){
+                                if (mysqli_num_rows($result) > 0) {
                                     $row = mysqli_fetch_assoc($result);
                                     $success = printBool($row["success"]);
                                     echo '<div class="align-items-center card bg-dark text-light">
@@ -90,7 +89,7 @@ if (isset($_POST["submit"])) {
                                             <p class="card-text"> DEADLINE -> ' . $row["end_date"] . '</p>
                                         </div>  
                                     </div> ';
-                                    if($row["end_date"] < date("Y-m-d")){
+                                    if ($row["end_date"] < date("Y-m-d")) {
                                         echo '<div class="alert alert-danger" role="alert">
                                         This crowdfunding is expired!
                                         </div>';
@@ -104,10 +103,11 @@ if (isset($_POST["submit"])) {
                                         </div>
                                     </form>';
                                     }
-                                }else{
+                                } else {
                                     echo '<div class="alert alert-danger mt-3" role="alert">
                                     There is no crowdfunding yet!
-                                    </div>';}
+                                    </div>';
+                                }
                                 ?>
                             </div>
                         </div>
